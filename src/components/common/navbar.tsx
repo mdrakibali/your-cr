@@ -45,7 +45,7 @@ export default function Navbar() {
           <Link href="/login" className="text-base">
             <Button
               variant="default"
-              className="font-bold text-primary bg-white border border-primary rounded-md px-8 h-11 text-sm transition-all hover:bg-primary hover:text-white cursor-pointer"
+              className="font-bold text-primary bg-white border border-primary rounded-md px-8 h-11 text-sm transition-all hover:bg-white cursor-pointer"
             >
               Login
             </Button>

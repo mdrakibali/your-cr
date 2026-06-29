@@ -57,7 +57,7 @@ export default function Hero() {
               Get Started as CR <MoveRight className="size-4 ml-1"/>
             </Button>
           </Link>
-          <Button className="font-bold bg-white border border-gray-600 text-gray-600 rounded-md px-5 h-13 text-sm transition-all cursor-pointer hover:bg-transparent">
+          <Button className="font-bold bg-white border border-gray-300 text-gray-600 rounded-md px-5 h-13 text-sm transition-all cursor-pointer hover:bg-white">
             <Play className="size-5 mr-1" /> Watch How It Works
           </Button>
         </div>

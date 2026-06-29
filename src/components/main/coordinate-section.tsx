@@ -39,11 +39,11 @@ export default function CoordinateSection() {
           {/* Right Graphic/Image Side */}
           <div className="lg:col-span-6 flex justify-center relative">
             {/* Background shape box */}
-            <div className="relative w-full max-w-md aspect-square overflow-hidden flex items-end justify-center rounded-3xl border border-gray-100">
+            <div className="relative w-full max-w-md aspect-square overflow-hidden flex items-end justify-center rounded-3xl">
               <Image
                 src={happyStudent}
                 alt="Happy student using laptop"
-                className="pointer-events-none w-auto h-auto max-w-[90%] max-h-[90%] object-contain"
+                className="pointer-events-none"
                 priority
               />
             </div>

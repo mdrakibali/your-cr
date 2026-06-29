@@ -5,12 +5,12 @@ import "./globals.css";
 
 const lato = Lato({
   subsets: ["latin"],
-  weight: ["100","300","400","700"],
+  weight: ["100", "300", "400", "700"],
   variable: "--font-sans",
 });
 const besley = Besley({
   subsets: ["latin"],
-  weight: ["400","500","700","800","900"],
+  weight: ["400", "500", "700", "800", "900"],
   variable: "--font-besley",
 });
 export const metadata: Metadata = {
@@ -89,7 +89,7 @@ export default async function RootLayout({
       <head>
         <meta name="google-adsense-account" content="ca-pub-1132020137464868" />
       </head>
-      <body  suppressHydrationWarning>
+      <body suppressHydrationWarning>
         {children}
         <Toaster position="top-center" richColors />
       </body>

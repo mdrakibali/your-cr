@@ -10,18 +10,18 @@ import TestimonialsSection from "@/components/main/testimonials-section";
 import FaqSection from "@/components/main/faq-section";
 
 export default function HomePage() {
-	return (
-		<div className="bg-white">
-			<Hero />
-			<TrustedUniversities />
-			<ProblemSection />
-			<FeatureSection />
-			<UploadSection />
-			<HowItWorks />
-			<CoordinateSection />
-			<StatsSection />
-			<TestimonialsSection />
-			<FaqSection />
-		</div>
-	);
+  return (
+    <div className="bg-white">
+      <Hero />
+      <TrustedUniversities />
+      <ProblemSection />
+      <FeatureSection />
+      <UploadSection />
+      <HowItWorks />
+      <CoordinateSection />
+      <StatsSection />
+      <TestimonialsSection />
+      <FaqSection />
+    </div>
+  );
 }

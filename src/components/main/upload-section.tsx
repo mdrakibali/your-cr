@@ -1,21 +1,31 @@
 import React from "react";
-import { Bell, FileText, Link2, Calendar, FolderOpen, ArrowRight, Users, CloudUpload } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight, CloudUpload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export default function ImportSection() {
+import announcementImg from "@/assets/upload-section/announcement.png";
+import approveImg from "@/assets/upload-section/approve.png";
+import assignmentImg from "@/assets/upload-section/assignment.png";
+import bellImg from "@/assets/upload-section/bell.png";
+import folderImg from "@/assets/upload-section/folder.png";
+import routineImg from "@/assets/upload-section/routine.png";
+import studentImg from "@/assets/upload-section/student.png";
+import teacherImg from "@/assets/upload-section/teacher.png";
+
+export default function UploadSection() {
 	const leftFloating = [
-		{ icon: <FileText className="h-5 w-5 text-emerald-600" />, title: "Assignment briefs", subtitle: "Guidelines & PDFs" },
-		{ icon: <Calendar className="h-5 w-5 text-red-600" />, title: "Routine changes", subtitle: "Rescheduled classes" },
-		{ icon: <Link2 className="h-5 w-5 text-blue-600" />, title: "Lecture slides", subtitle: "Drive & folder links" },
-		{ icon: <Bell className="h-5 w-5 text-amber-600" />, title: "Exam notices", subtitle: "Dates & syllabi" },
+		{ image: assignmentImg, title: "Assignment briefs", subtitle: "Guidelines & PDFs" },
+		{ image: routineImg, title: "Routine changes", subtitle: "Rescheduled classes" },
+		{ image: folderImg, title: "Lecture slides", subtitle: "Drive & folder links" },
+		{ image: bellImg, title: "Exam notices", subtitle: "Dates & syllabi" },
 	];
 
 	const rightFloating = [
-		{ icon: <Users className="h-5 w-5 text-purple-600" />, title: "Faculty contacts", subtitle: "Teacher emails" },
-		{ icon: <FileText className="h-5 w-5 text-cyan-600" />, title: "Course syllabus", subtitle: "Semester outlines" },
-		{ icon: <Link2 className="h-5 w-5 text-sky-600" />, title: "Meeting links", subtitle: "Zoom / Meet slots" },
-		{ icon: <FolderOpen className="h-5 w-5 text-indigo-600" />, title: "Class resources", subtitle: "Handouts & sheets" },
+		{ image: teacherImg, title: "Faculty contacts", subtitle: "Teacher emails" },
+		{ image: announcementImg, title: "Course syllabus", subtitle: "Semester outlines" },
+		{ image: approveImg, title: "Meeting links", subtitle: "Zoom / Meet slots" },
+		{ image: studentImg, title: "Class resources", subtitle: "Handouts & sheets" },
 	];
 
 	return (
@@ -39,8 +49,8 @@ export default function ImportSection() {
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full lg:hidden order-1">
 						{leftFloating.map((item, idx) => (
 							<div key={idx} className="bg-white border border-gray-100 p-4 rounded-xl flex flex-col items-center text-center">
-								<div className="p-2 bg-gray-50 rounded-lg mb-2">
-									{item.icon}
+								<div className="w-8 h-8 flex items-center justify-center mb-2">
+									<Image src={item.image} alt={item.title} width={32} height={32} className="object-contain" />
 								</div>
 								<span className="text-xs font-bold text-gray-800">{item.title}</span>
 								<span className="text-[10px] text-gray-400 mt-0.5">{item.subtitle}</span>
@@ -50,9 +60,10 @@ export default function ImportSection() {
 
 					{/* Left Column (Desktop Absolute) */}
 					<div className="hidden lg:block w-72 shrink-0 space-y-6 z-10 text-left">
-						{/* Positioned relatively around the center block using margins / flex */}
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 translate-x-12">
-							<div className="p-2 bg-gray-50 rounded-lg">{leftFloating[0].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={leftFloating[0].image} alt={leftFloating[0].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{leftFloating[0].title}</p>
 								<p className="text-[10px] text-gray-400">{leftFloating[0].subtitle}</p>
@@ -60,7 +71,9 @@ export default function ImportSection() {
 						</div>
 						
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 -translate-x-4">
-							<div className="p-2 bg-gray-50 rounded-lg">{leftFloating[1].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={leftFloating[1].image} alt={leftFloating[1].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{leftFloating[1].title}</p>
 								<p className="text-[10px] text-gray-400">{leftFloating[1].subtitle}</p>
@@ -68,7 +81,9 @@ export default function ImportSection() {
 						</div>
 
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 translate-x-16">
-							<div className="p-2 bg-gray-50 rounded-lg">{leftFloating[2].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={leftFloating[2].image} alt={leftFloating[2].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{leftFloating[2].title}</p>
 								<p className="text-[10px] text-gray-400">{leftFloating[2].subtitle}</p>
@@ -76,7 +91,9 @@ export default function ImportSection() {
 						</div>
 
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 -translate-x-2">
-							<div className="p-2 bg-gray-50 rounded-lg">{leftFloating[3].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={leftFloating[3].image} alt={leftFloating[3].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{leftFloating[3].title}</p>
 								<p className="text-[10px] text-gray-400">{leftFloating[3].subtitle}</p>
@@ -111,7 +128,9 @@ export default function ImportSection() {
 					{/* Right Column (Desktop Absolute) */}
 					<div className="hidden lg:block w-72 shrink-0 space-y-6 z-10 text-left">
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 -translate-x-12">
-							<div className="p-2 bg-gray-50 rounded-lg">{rightFloating[0].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={rightFloating[0].image} alt={rightFloating[0].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{rightFloating[0].title}</p>
 								<p className="text-[10px] text-gray-400">{rightFloating[0].subtitle}</p>
@@ -119,7 +138,9 @@ export default function ImportSection() {
 						</div>
 
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 translate-x-4">
-							<div className="p-2 bg-gray-50 rounded-lg">{rightFloating[1].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={rightFloating[1].image} alt={rightFloating[1].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{rightFloating[1].title}</p>
 								<p className="text-[10px] text-gray-400">{rightFloating[1].subtitle}</p>
@@ -127,7 +148,9 @@ export default function ImportSection() {
 						</div>
 
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 -translate-x-16">
-							<div className="p-2 bg-gray-50 rounded-lg">{rightFloating[2].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={rightFloating[2].image} alt={rightFloating[2].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{rightFloating[2].title}</p>
 								<p className="text-[10px] text-gray-400">{rightFloating[2].subtitle}</p>
@@ -135,7 +158,9 @@ export default function ImportSection() {
 						</div>
 
 						<div className="bg-white border border-gray-100 p-4 rounded-xl flex items-center gap-3 w-64 translate-x-2">
-							<div className="p-2 bg-gray-50 rounded-lg">{rightFloating[3].icon}</div>
+							<div className="w-8 h-8 flex items-center justify-center shrink-0">
+								<Image src={rightFloating[3].image} alt={rightFloating[3].title} width={32} height={32} className="object-contain" />
+							</div>
 							<div>
 								<p className="text-xs font-bold text-gray-800">{rightFloating[3].title}</p>
 								<p className="text-[10px] text-gray-400">{rightFloating[3].subtitle}</p>
@@ -147,8 +172,8 @@ export default function ImportSection() {
 					<div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full lg:hidden order-3">
 						{rightFloating.map((item, idx) => (
 							<div key={idx} className="bg-white border border-gray-100 p-4 rounded-xl flex flex-col items-center text-center">
-								<div className="p-2 bg-gray-50 rounded-lg mb-2">
-									{item.icon}
+								<div className="w-8 h-8 flex items-center justify-center mb-2">
+									<Image src={item.image} alt={item.title} width={32} height={32} className="object-contain" />
 								</div>
 								<span className="text-xs font-bold text-gray-800">{item.title}</span>
 								<span className="text-[10px] text-gray-400 mt-0.5">{item.subtitle}</span>

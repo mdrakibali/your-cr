@@ -2,7 +2,7 @@ import CoordinateSection from "@/components/main/coordinate-section";
 import FeatureSection from "@/components/main/feature-section";
 import Hero from "@/components/main/hero";
 import HowItWorks from "@/components/main/how-it-works";
-import ImportSection from "@/components/main/import-section";
+import UploadSection from "@/components/main/upload-section";
 import ProblemSection from "@/components/main/problem-section";
 import TrustedUniversities from "@/components/main/trusted-universities";
 import StatsSection from "@/components/main/stats-section";
@@ -16,7 +16,7 @@ export default function HomePage() {
 			<TrustedUniversities />
 			<ProblemSection />
 			<FeatureSection />
-			<ImportSection />
+			<UploadSection />
 			<HowItWorks />
 			<CoordinateSection />
 			<StatsSection />

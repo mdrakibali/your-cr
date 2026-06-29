@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Mail } from "lucide-react";
-import Image from "next/image";
-import logoImg from "@/assets/logo/logo.png";
+import Logo from "./logo";
 
 // Inline brand SVGs to bypass lucide-react brand logo limitations
 const GithubIcon = ({ className }: { className?: string }) => (
@@ -27,14 +26,7 @@ export default function Footer() {
 			<div className="container grid grid-cols-1 gap-8 md:grid-cols-4">
 				{/* Brand Column */}
 				<div className="flex flex-col gap-4">
-					<Link href="/" className="flex items-center gap-2">
-						<div className="flex h-8 w-8 items-center justify-center overflow-hidden shrink-0">
-							<Image src={logoImg} alt="YourCR Logo" className="h-full w-full object-contain" />
-						</div>
-						<span className="text-lg font-bold tracking-tight text-gray-900">
-							Your<span className="text-primary">CR</span>
-						</span>
-					</Link>
+					<Logo/>
 					<p className="text-sm text-gray-500 leading-relaxed">
 						An all-in-one student management and class representative coordination tool designed for modern classrooms.
 					</p>

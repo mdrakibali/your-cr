@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Hanken_Grotesk } from "next/font/google";
+import {  Lato  } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
-const mukta = Hanken_Grotesk({
-  variable: "--font-geist-sans",
-  weight: ["300", "400", "500", "600"],
+
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["100","300","400","700"],
+  variable: "--font-lato",
 });
 export const metadata: Metadata = {
   title: {
@@ -74,11 +76,15 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${lato.className}`}
+      suppressHydrationWarning
+    >
       <head>
         <meta name="google-adsense-account" content="ca-pub-1132020137464868" />
       </head>
-      <body className={`${mukta.className}`} suppressHydrationWarning>
+      <body  suppressHydrationWarning>
         {children}
         <Toaster position="top-center" richColors />
       </body>

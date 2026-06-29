@@ -35,7 +35,7 @@ export default function ProblemSection() {
 					<span className="text-xs font-semibold tracking-widest text-[#8c94a5] uppercase block mb-3">
 						Sound familiar?
 					</span>
-					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 leading-tight">
+					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">
 						Class coordination feels{" "}
 						<span className="italic text-primary font-normal">harder than it should</span>
 					</h2>
@@ -54,7 +54,7 @@ export default function ProblemSection() {
 							</div>
 							
 							{/* Card Title */}
-							<h3 className="text-lg font-bold text-gray-900 mb-3">
+							<h3 className="text-lg font-medium text-gray-900 mb-3">
 								{card.title}
 							</h3>
 							

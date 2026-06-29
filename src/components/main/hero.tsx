@@ -37,7 +37,7 @@ export default function Hero() {
             </div>
           </div>
 
-				<h1 className="text-3xl sm:text-5xl lg:text-[54px] font-bold text-[#333333] leading-[1.2]">Study Smarter with AI. <br /> Remember More. <span className="italic text-primary">Stress Less</span></h1> 
+				<h1 className="text-3xl sm:text-5xl lg:text-[54px] font-medium text-[#333333] leading-[1.2]">Study Smarter with AI. <br /> Remember More. <span className="italic text-primary">Stress Less</span></h1> 
 				{/* Description */}
 				<p className="mt-6 max-w-3xl text-base md:text-lg lg:text-[19px] leading-relaxed text-gray-500">
 					Turn class schedules, routine changes, exam notices, and student directory spreadsheets into a complete, AI-powered class hub—so you organize instantly and lead effortlessly.

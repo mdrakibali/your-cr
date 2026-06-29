@@ -156,7 +156,7 @@ export default function HowItWorks() {
 			<div className="container px-4 mx-auto max-w-6xl">
 				{/* Header */}
 				<div className="text-center mb-16 max-w-3xl mx-auto">
-					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-bold text-gray-900 leading-tight">
+					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-semibold text-gray-900 leading-tight">
 						How YourCR{" "}
 						<span className="italic text-primary font-normal">coordination works</span>
 					</h2>

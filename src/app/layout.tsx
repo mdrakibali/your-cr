@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
-import {  Lato  } from "next/font/google";
+import { Besley, Lato } from "next/font/google";
 import { Toaster } from "sonner";
 import "./globals.css";
 
 const lato = Lato({
   subsets: ["latin"],
   weight: ["100","300","400","700"],
-  variable: "--font-lato",
+  variable: "--font-sans",
+});
+const besley = Besley({
+  subsets: ["latin"],
+  weight: ["400","500","700","800","900"],
+  variable: "--font-besley",
 });
 export const metadata: Metadata = {
   title: {
@@ -78,7 +83,7 @@ export default async function RootLayout({
   return (
     <html
       lang="en"
-      className={`${lato.className}`}
+      className={`${lato.variable} ${besley.variable}`}
       suppressHydrationWarning
     >
       <head>

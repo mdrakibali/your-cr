@@ -1,11 +1,13 @@
-import React from "react";
-import Hero from "@/components/main/hero";
-import TrustedUniversities from "@/components/main/trusted-universities";
-import ProblemSection from "@/components/main/problem-section";
-import ImportSection from "@/components/main/import-section";
 import CoordinateSection from "@/components/main/coordinate-section";
-import HowItWorks from "@/components/main/how-it-works";
 import FeatureSection from "@/components/main/feature-section";
+import Hero from "@/components/main/hero";
+import HowItWorks from "@/components/main/how-it-works";
+import ImportSection from "@/components/main/import-section";
+import ProblemSection from "@/components/main/problem-section";
+import TrustedUniversities from "@/components/main/trusted-universities";
+import StatsSection from "@/components/main/stats-section";
+import TestimonialsSection from "@/components/main/testimonials-section";
+import FaqSection from "@/components/main/faq-section";
 
 export default function HomePage() {
 	return (
@@ -13,10 +15,13 @@ export default function HomePage() {
 			<Hero />
 			<TrustedUniversities />
 			<ProblemSection />
-			<ImportSection />
-			<CoordinateSection />
-			<HowItWorks />
 			<FeatureSection />
+			<ImportSection />
+			<HowItWorks />
+			<CoordinateSection />
+			<StatsSection />
+			<TestimonialsSection />
+			<FaqSection />
 		</div>
 	);
 }

@@ -1,27 +1,33 @@
 import React from "react";
-import { MessageSquare, Calendar, AlertCircle, Users, ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+
+import announcementImg from "@/assets/problem-section/announcement.png";
+import calendarImg from "@/assets/problem-section/calendar.png";
+import assignmentImg from "@/assets/problem-section/assignment.png";
+import teacherImg from "@/assets/problem-section/teacher.png";
 
 export default function ProblemSection() {
 	const cards = [
 		{
-			icon: <MessageSquare className="h-6 w-6 text-primary" />,
+			image: announcementImg,
 			title: "Scattered notices & updates",
 			quote: '"Is it on WhatsApp, Messenger, or email? I scrolled for 10 minutes and still missed the quiz syllabus."'
 		},
 		{
-			icon: <Calendar className="h-6 w-6 text-primary" />,
+			image: calendarImg,
 			title: "Last-minute routine changes",
 			quote: '"Class got rescheduled or room changed, but nobody updated the group chat. We showed up to an empty room."'
 		},
 		{
-			icon: <AlertCircle className="h-6 w-6 text-primary" />,
+			image: assignmentImg,
 			title: "Assignment deadline panic",
 			quote: '"I didn\'t know we had a lab report due today. The submission link was buried in a thread of 500 messages."'
 		},
 		{
-			icon: <Users className="h-6 w-6 text-primary" />,
+			image: teacherImg,
 			title: "Teacher & directory chaos",
 			quote: '"Who has the teacher\'s email? Where is the attendance spreadsheet? CRs spend all day answering the same questions."'
 		}
@@ -48,9 +54,15 @@ export default function ProblemSection() {
 							key={idx}
 							className="bg-white p-8 rounded-2xl border border-gray-100 flex flex-col items-center text-center"
 						>
-							{/* Icon Container */}
-							<div className="p-3 bg-primary/10 rounded-2xl mb-6">
-								{card.icon}
+							{/* Image Container instead of Icon */}
+							<div className="w-16 h-16 flex items-center justify-center mb-6">
+								<Image
+									src={card.image}
+									alt={card.title}
+									width={64}
+									height={64}
+									className="object-contain"
+								/>
 							</div>
 							
 							{/* Card Title */}
@@ -59,7 +71,7 @@ export default function ProblemSection() {
 							</h3>
 							
 							{/* Quote */}
-							<p className="text-sm leading-relaxed text-gray-500 italic">
+							<p className="text-base leading-relaxed text-gray-500 italic">
 								{card.quote}
 							</p>
 						</div>

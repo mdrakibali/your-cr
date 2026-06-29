@@ -1,5 +1,11 @@
-import React from "react";
-import { Bell, Calendar, FileText, Users, Mail, Phone, ExternalLink } from "lucide-react";
+import { ExternalLink, Mail, Phone } from "lucide-react";
+import Image from "next/image";
+
+import approveImg from "@/assets/features/approve.png";
+import bellImg from "@/assets/features/bell.png";
+import folderImg from "@/assets/features/folder.png";
+import routineImg from "@/assets/features/routine.png";
+import studentImg from "@/assets/features/student.png";
 
 export default function FeatureSection() {
 	return (
@@ -23,13 +29,17 @@ export default function FeatureSection() {
 				<div className="flex flex-col gap-12">
 					
 					{/* Feature 1: Notice Board */}
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#fff8f2] p-8 sm:p-12 rounded-3xl border border-amber-100/50">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-r from-white to-[#fff8f2] p-8 sm:p-12 rounded-3xl border border-amber-100/50">
 						<div className="lg:col-span-6 text-left">
-							<div className="inline-flex p-3 bg-amber-100 text-amber-700 rounded-2xl mb-6">
-								<Bell className="h-6 w-6" />
+							<div className="flex items-center gap-4 mb-6">
+								<div className="p-3 rounded-lg bg-primary/10">
+									<Image src={bellImg} alt="Notice Icon" width={48} height={48} className="object-contain" />
+								</div>
+								<div>
+									<h3 className="text-2xl font-medium text-gray-900 mb-2">Smart Notice Board</h3>
+									<h4 className="text-base font-semibold text-amber-700 mb-4">Never miss an official update</h4>
+								</div>
 							</div>
-							<h3 className="text-2xl font-medium text-gray-900 mb-2">Smart Notice Board</h3>
-							<h4 className="text-base font-semibold text-amber-700 mb-4">Never miss an official update</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								CRs can publish class announcements, exam schedules, and slides. Students get instant notifications, and all updates remain in a clean timeline.
 							</p>
@@ -50,8 +60,8 @@ export default function FeatureSection() {
 										yourcr.com/notices
 									</div>
 								</div>
-								<div className="p-4 sm:p-6 space-y-4">
-									<div className="border border-amber-100 bg-amber-50/20 p-4 rounded-xl">
+								<div className="p-4 sm:p-6 space-y-4 bg-white">
+									<div className="border border-amber-100 bg-white p-4 rounded-xl">
 										<div className="flex justify-between items-start mb-2">
 											<span className="font-bold text-xs bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full">Urgent</span>
 											<span className="text-[11px] text-gray-400">10:42 AM</span>
@@ -66,14 +76,14 @@ export default function FeatureSection() {
 											</span>
 										</div>
 									</div>
-									<div className="border border-gray-100 p-4 rounded-xl bg-gray-50/30">
+									<div className="border border-gray-100 bg-white p-4 rounded-xl">
 										<div className="flex justify-between items-start mb-2">
 											<span className="font-bold text-xs bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-full">General</span>
 											<span className="text-[11px] text-gray-400">Yesterday</span>
 										</div>
 										<h5 className="font-bold text-sm text-gray-800 mb-1">Guest Lecture on Cloud Solutions</h5>
 										<p className="text-xs text-gray-500 leading-relaxed">
-											A guest lecture will occur on Wednesday in the library hall. Attendance is highly encouraged.
+											Department has arranged a guest seminar on Cloud Infrastructure. Attendance is requested.
 										</p>
 									</div>
 								</div>
@@ -82,13 +92,17 @@ export default function FeatureSection() {
 					</div>
 
 					{/* Feature 2: Dynamic Routine Tracker */}
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#f2faf6] p-8 sm:p-12 rounded-3xl border border-emerald-100/50">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-r from-white to-[#f2faf6] p-8 sm:p-12 rounded-3xl border border-emerald-100/50">
 						<div className="lg:col-span-6 lg:order-2 text-left">
-							<div className="inline-flex p-3 bg-emerald-100 text-emerald-700 rounded-2xl mb-6">
-								<Calendar className="h-6 w-6" />
+							<div className="flex items-center gap-4 mb-6">
+								<div className="p-3 rounded-lg bg-primary/10">
+									<Image src={routineImg} alt="Routine Icon" width={48} height={48} className="object-contain" />
+								</div>
+								<div>
+									<h3 className="text-2xl font-medium text-gray-900 mb-2">Live Routine Tracker</h3>
+									<h4 className="text-base font-semibold text-emerald-700 mb-4">Up-to-the-minute class schedules</h4>
+								</div>
 							</div>
-							<h3 className="text-2xl font-medium text-gray-900 mb-2">Live Routine Tracker</h3>
-							<h4 className="text-base font-semibold text-emerald-700 mb-4">Up-to-the-minute class schedules</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								CRs update the daily schedule when teachers reschedule classes or switch classrooms. Students always see the active status instantly.
 							</p>
@@ -109,10 +123,10 @@ export default function FeatureSection() {
 										yourcr.com/routine
 									</div>
 								</div>
-								<div className="p-4 sm:p-6 space-y-3">
+								<div className="p-4 sm:p-6 space-y-3 bg-white">
 									<h4 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Today's Timeline</h4>
 									
-									<div className="flex items-center gap-4 p-3 rounded-xl border border-gray-100 bg-gray-50/30">
+									<div className="flex items-center gap-4 p-3 rounded-xl border border-gray-100 bg-white">
 										<div className="text-center shrink-0">
 											<p className="text-xs font-bold text-gray-800">09:00 AM</p>
 											<p className="text-[10px] text-gray-400">90 Mins</p>
@@ -124,7 +138,7 @@ export default function FeatureSection() {
 										<span className="text-[10px] font-bold bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded-md">Active</span>
 									</div>
 
-									<div className="flex items-center gap-4 p-3 rounded-xl border border-amber-100 bg-amber-50/20">
+									<div className="flex items-center gap-4 p-3 rounded-xl border border-amber-100 bg-white">
 										<div className="text-center shrink-0">
 											<p className="text-xs font-bold text-gray-800">11:00 AM</p>
 											<p className="text-[10px] text-gray-400">90 Mins</p>
@@ -136,7 +150,7 @@ export default function FeatureSection() {
 										<span className="text-[10px] font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded-md">Room Shifted</span>
 									</div>
 
-									<div className="flex items-center gap-4 p-3 rounded-xl border border-red-100 bg-red-50/20">
+									<div className="flex items-center gap-4 p-3 rounded-xl border border-red-100 bg-white">
 										<div className="text-center shrink-0">
 											<p className="text-xs font-bold text-gray-800 text-gray-400">02:00 PM</p>
 											<p className="text-[10px] text-gray-400">90 Mins</p>
@@ -153,13 +167,17 @@ export default function FeatureSection() {
 					</div>
 
 					{/* Feature 3: Assignment & Exam Tracker */}
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#fff2f3] p-8 sm:p-12 rounded-3xl border border-rose-100/50">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-r from-white to-[#fff2f3] p-8 sm:p-12 rounded-3xl border border-rose-100/50">
 						<div className="lg:col-span-6 text-left">
-							<div className="inline-flex p-3 bg-rose-100 text-rose-700 rounded-2xl mb-6">
-								<FileText className="h-6 w-6" />
+							<div className="flex items-center gap-4 mb-6">
+								<div className="p-3 rounded-lg bg-primary/10">
+									<Image src={approveImg} alt="Assignment Icon" width={48} height={48} className="object-contain" />
+								</div>
+								<div>
+									<h3 className="text-2xl font-medium text-gray-900 mb-2">Assignment Tracker</h3>
+									<h4 className="text-base font-semibold text-rose-700 mb-4">Track deadlines without stress</h4>
+								</div>
 							</div>
-							<h3 className="text-2xl font-medium text-gray-900 mb-2">Assignment Tracker</h3>
-							<h4 className="text-base font-semibold text-rose-700 mb-4">Track deadlines without stress</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								Add assignment parameters, project guidelines, resource links, and submission schedules in one centralized hub.
 							</p>
@@ -180,8 +198,8 @@ export default function FeatureSection() {
 										yourcr.com/assignments
 									</div>
 								</div>
-								<div className="p-4 sm:p-6 space-y-4">
-									<div className="border border-rose-100 bg-rose-50/20 p-4 rounded-xl">
+								<div className="p-4 sm:p-6 space-y-4 bg-white">
+									<div className="border border-rose-100 bg-white p-4 rounded-xl">
 										<div className="flex justify-between items-start mb-2">
 											<span className="text-[10px] text-rose-700 font-bold bg-rose-100 px-2 py-0.5 rounded-full flex items-center gap-1">
 												⏰ 14 Hours Left
@@ -197,7 +215,7 @@ export default function FeatureSection() {
 										</button>
 									</div>
 
-									<div className="border border-gray-100 p-4 rounded-xl bg-gray-50/30">
+									<div className="border border-gray-100 bg-white p-4 rounded-xl">
 										<div className="flex justify-between items-start mb-2">
 											<span className="text-[10px] text-gray-500 font-bold bg-gray-100 px-2 py-0.5 rounded-full">
 												⏰ 6 Days Left
@@ -215,13 +233,17 @@ export default function FeatureSection() {
 					</div>
 
 					{/* Feature 4: Student Directory & Registration */}
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#faf6ff] p-8 sm:p-12 rounded-3xl border border-purple-100/50">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-r from-white to-[#faf6ff] p-8 sm:p-12 rounded-3xl border border-purple-100/50">
 						<div className="lg:col-span-6 lg:order-2 text-left">
-							<div className="inline-flex p-3 bg-purple-100 text-purple-700 rounded-2xl mb-6">
-								<Users className="h-6 w-6" />
+							<div className="flex items-center gap-4 mb-6">
+								<div className="p-3 rounded-lg bg-primary/10">
+									<Image src={studentImg} alt="Student Icon" width={48} height={48} className="object-contain" />
+								</div>
+								<div>
+									<h3 className="text-2xl font-medium text-gray-900 mb-2">Student Directory</h3>
+									<h4 className="text-base font-semibold text-purple-700 mb-4">Class rosters and easy contact details</h4>
+								</div>
 							</div>
-							<h3 className="text-2xl font-medium text-gray-900 mb-2">Student Directory</h3>
-							<h4 className="text-base font-semibold text-purple-700 mb-4">Class rosters and easy contact details</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								CRs approve student entries to join the class directory. Students fill out profiles, creating a secure database accessible to the section.
 							</p>
@@ -242,13 +264,13 @@ export default function FeatureSection() {
 										yourcr.com/students
 									</div>
 								</div>
-								<div className="p-4 sm:p-6 space-y-3">
+								<div className="p-4 sm:p-6 space-y-3 bg-white">
 									<div className="flex justify-between items-center mb-3">
 										<h4 className="text-xs font-bold text-gray-800">Class Section A (42 Students)</h4>
 										<span className="text-[10px] font-bold text-primary hover:underline cursor-pointer">+ Add Student</span>
 									</div>
 
-									<div className="flex items-center justify-between p-3 border border-gray-100 rounded-xl">
+									<div className="flex items-center justify-between p-3 border border-gray-100 rounded-xl bg-white">
 										<div className="flex items-center gap-3">
 											<div className="size-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center">
 												RI
@@ -268,7 +290,7 @@ export default function FeatureSection() {
 										</div>
 									</div>
 
-									<div className="flex items-center justify-between p-3 border border-gray-100 rounded-xl">
+									<div className="flex items-center justify-between p-3 border border-gray-100 rounded-xl bg-white">
 										<div className="flex items-center gap-3">
 											<div className="size-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center">
 												FA
@@ -288,7 +310,7 @@ export default function FeatureSection() {
 										</div>
 									</div>
 
-									<div className="flex items-center justify-between p-3 border border-gray-100 rounded-xl">
+									<div className="flex items-center justify-between p-3 border border-gray-100 rounded-xl bg-white">
 										<div className="flex items-center gap-3">
 											<div className="size-8 rounded-full bg-purple-100 text-purple-700 font-bold text-xs flex items-center justify-center">
 												AK
@@ -313,13 +335,17 @@ export default function FeatureSection() {
 					</div>
 
 					{/* Feature 5: Teacher Directory & Syllabus */}
-					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#f0fdff] p-8 sm:p-12 rounded-3xl border border-cyan-100/50">
+					<div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-gradient-to-r from-white to-[#f0fdff] p-8 sm:p-12 rounded-3xl border border-cyan-100/50">
 						<div className="lg:col-span-6 text-left">
-							<div className="inline-flex p-3 bg-cyan-100 text-cyan-700 rounded-2xl mb-6">
-								<Users className="h-6 w-6" />
+							<div className="flex items-center gap-4 mb-6">
+								<div className="p-3 rounded-lg bg-primary/10">
+									<Image src={folderImg} alt="Folder Icon" width={48} height={48} className="object-contain" />
+								</div>
+								<div>
+									<h3 className="text-2xl font-medium text-gray-900 mb-2">Faculty & Course Directory</h3>
+									<h4 className="text-base font-semibold text-cyan-700 mb-4">Quick instructor details & files</h4>
+								</div>
 							</div>
-							<h3 className="text-2xl font-medium text-gray-900 mb-2">Faculty & Course Directory</h3>
-							<h4 className="text-base font-semibold text-cyan-700 mb-4">Quick instructor details & files</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								Keep professors' emails, office hours, consultancy locations, and syllabus drafts sorted by active semesters.
 							</p>
@@ -340,8 +366,8 @@ export default function FeatureSection() {
 										yourcr.com/faculty
 									</div>
 								</div>
-								<div className="p-4 sm:p-6 space-y-4">
-									<div className="border border-cyan-100 bg-cyan-50/20 p-4 rounded-xl">
+								<div className="p-4 sm:p-6 space-y-4 bg-white">
+									<div className="border border-cyan-100 bg-white p-4 rounded-xl">
 										<h5 className="font-bold text-xs text-cyan-800 mb-1">Instructor Details</h5>
 										<h4 className="font-bold text-sm text-gray-800">Dr. Anisur Rahman</h4>
 										<p className="text-[10px] text-gray-400 mb-2">Professor • Dept. of CSE</p>

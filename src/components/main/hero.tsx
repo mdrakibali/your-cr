@@ -33,14 +33,14 @@ export default function Hero() {
               />
             </div>
             <div className="font-semibold text-sm">
-             Used by 5m+ students to study smarter, not longer.
+             Used by 150k+ students to coordinate classes easily.
             </div>
           </div>
 
-				<h1 className="text-3xl sm:text-5xl lg:text-[54px] font-medium text-[#333333] leading-[1.2]">Study Smarter with AI. <br /> Remember More. <span className="italic text-primary">Stress Less</span></h1> 
+				<h1 className="text-3xl sm:text-5xl lg:text-[54px] font-medium text-[#333333] leading-[1.2]">Simplify Class Management <br /> <span className="italic text-primary">with Your CR</span></h1> 
 				{/* Description */}
 				<p className="mt-6 max-w-3xl text-base md:text-lg lg:text-[19px] leading-relaxed text-gray-500">
-					Turn class schedules, routine changes, exam notices, and student directory spreadsheets into a complete, AI-powered class hub—so you organize instantly and lead effortlessly.
+					The all-in-one platform bridging the gap between students, reps, and faculty. Announcements, polls, and resources — all in one place.
 				</p>
 
 				{/* CTA Buttons */}
@@ -53,7 +53,7 @@ export default function Hero() {
 							variant="default"
 							className="font-bold text-white bg-primary rounded-md px-8 h-13 text-sm transition-all cursor-pointer"
 						>
-							Start Your Free Session
+							Get Started as CR
 						</Button>
 					</Link>
 					<Button

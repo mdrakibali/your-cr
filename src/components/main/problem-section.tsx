@@ -70,15 +70,13 @@ export default function ProblemSection() {
     <section className="py-20 bg-[#F8F8F8]">
       <div className="container px-4 mx-auto max-w-6xl">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold tracking-widest text-[#8c94a5] uppercase block mb-3">
             Sound familiar?
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-gray-900 leading-tight">
-            Class coordination feels{" "}
-            <span className="italic text-primary font-normal">
-              harder than it should
-            </span>
+            Class coordination feels
+            <span className="italic text-primary font-normal"> harder than it should</span>
           </h2>
         </div>
 

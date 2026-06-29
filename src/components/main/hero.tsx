@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Play } from "lucide-react";
+import { ArrowLeft, ArrowRightLeft, MoveRight, Play } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -54,11 +54,11 @@ export default function Hero() {
               variant="default"
               className="font-bold text-white bg-primary rounded-md px-8 h-13 text-sm transition-all cursor-pointer"
             >
-              Get Started as CR
+              Get Started as CR <MoveRight className="size-4 ml-1"/>
             </Button>
           </Link>
           <Button className="font-bold bg-white border border-gray-600 text-gray-600 rounded-md px-5 h-13 text-sm transition-all cursor-pointer hover:bg-transparent">
-            <Play className="h-5 w-5 text-gray-600" /> Watch How It Works
+            <Play className="size-5 mr-1" /> Watch How It Works
           </Button>
         </div>
       </div>

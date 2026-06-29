@@ -52,7 +52,7 @@ export default function StatsSection() {
 
 					{/* Right Side: Text Description */}
 					<div className="lg:col-span-6 text-left space-y-6 order-1 lg:order-2">
-						<h2 className="text-3xl md:text-4xl lg:text-[43px] font-semibold text-gray-900 leading-tight">
+						<h2 className="text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">
 							Trusted by classrooms{" "}
 							<span className="italic text-primary font-normal">worldwide</span>
 						</h2>

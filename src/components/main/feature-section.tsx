@@ -10,7 +10,7 @@ export default function FeatureSection() {
 					<span className="text-xs font-semibold tracking-widest text-[#8c94a5] uppercase block mb-3">
 						Introducing YourCR
 					</span>
-					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-semibold text-gray-900 leading-tight">
+					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">
 						We turn classroom chaos into a{" "}
 						<span className="italic text-primary font-normal">complete coordination hub</span>
 					</h2>
@@ -28,7 +28,7 @@ export default function FeatureSection() {
 							<div className="inline-flex p-3 bg-amber-100 text-amber-700 rounded-2xl mb-6">
 								<Bell className="h-6 w-6" />
 							</div>
-							<h3 className="text-2xl font-semibold text-gray-900 mb-2">Smart Notice Board</h3>
+							<h3 className="text-2xl font-medium text-gray-900 mb-2">Smart Notice Board</h3>
 							<h4 className="text-base font-semibold text-amber-700 mb-4">Never miss an official update</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								CRs can publish class announcements, exam schedules, and slides. Students get instant notifications, and all updates remain in a clean timeline.
@@ -87,7 +87,7 @@ export default function FeatureSection() {
 							<div className="inline-flex p-3 bg-emerald-100 text-emerald-700 rounded-2xl mb-6">
 								<Calendar className="h-6 w-6" />
 							</div>
-							<h3 className="text-2xl font-semibold text-gray-900 mb-2">Live Routine Tracker</h3>
+							<h3 className="text-2xl font-medium text-gray-900 mb-2">Live Routine Tracker</h3>
 							<h4 className="text-base font-semibold text-emerald-700 mb-4">Up-to-the-minute class schedules</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								CRs update the daily schedule when teachers reschedule classes or switch classrooms. Students always see the active status instantly.
@@ -158,7 +158,7 @@ export default function FeatureSection() {
 							<div className="inline-flex p-3 bg-rose-100 text-rose-700 rounded-2xl mb-6">
 								<FileText className="h-6 w-6" />
 							</div>
-							<h3 className="text-2xl font-semibold text-gray-900 mb-2">Assignment Tracker</h3>
+							<h3 className="text-2xl font-medium text-gray-900 mb-2">Assignment Tracker</h3>
 							<h4 className="text-base font-semibold text-rose-700 mb-4">Track deadlines without stress</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								Add assignment parameters, project guidelines, resource links, and submission schedules in one centralized hub.
@@ -220,7 +220,7 @@ export default function FeatureSection() {
 							<div className="inline-flex p-3 bg-purple-100 text-purple-700 rounded-2xl mb-6">
 								<Users className="h-6 w-6" />
 							</div>
-							<h3 className="text-2xl font-semibold text-gray-900 mb-2">Student Directory</h3>
+							<h3 className="text-2xl font-medium text-gray-900 mb-2">Student Directory</h3>
 							<h4 className="text-base font-semibold text-purple-700 mb-4">Class rosters and easy contact details</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								CRs approve student entries to join the class directory. Students fill out profiles, creating a secure database accessible to the section.
@@ -318,7 +318,7 @@ export default function FeatureSection() {
 							<div className="inline-flex p-3 bg-cyan-100 text-cyan-700 rounded-2xl mb-6">
 								<Users className="h-6 w-6" />
 							</div>
-							<h3 className="text-2xl font-semibold text-gray-900 mb-2">Faculty & Course Directory</h3>
+							<h3 className="text-2xl font-medium text-gray-900 mb-2">Faculty & Course Directory</h3>
 							<h4 className="text-base font-semibold text-cyan-700 mb-4">Quick instructor details & files</h4>
 							<p className="text-gray-600 leading-relaxed text-sm sm:text-base mb-2">
 								Keep professors' emails, office hours, consultancy locations, and syllabus drafts sorted by active semesters.

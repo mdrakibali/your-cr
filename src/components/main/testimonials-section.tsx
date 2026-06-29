@@ -80,7 +80,7 @@ export default function TestimonialsSection() {
 				
 				{/* Header */}
 				<div className="mb-12 max-w-3xl mx-auto space-y-4">
-					<h2 className="font-besley text-3xl md:text-4xl lg:text-[43px]  text-gray-900 leading-tight">
+					<h2 className="font-besley text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">
 						Loved by classrooms{" "}
 						<span className="italic text-primary font-normal">everywhere</span>
 					</h2>

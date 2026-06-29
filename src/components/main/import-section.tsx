@@ -23,7 +23,7 @@ export default function ImportSection() {
 			<div className="container px-4 mx-auto max-w-6xl text-center">
 				{/* Header */}
 				<div className="mb-12 max-w-3xl mx-auto">
-					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-semibold text-gray-900 leading-tight">
+					<h2 className="text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">
 						Upload once.{" "}
 						<span className="italic text-primary font-normal">Notify everyone</span>
 					</h2>
@@ -90,10 +90,10 @@ export default function ImportSection() {
 							<CloudUpload className="h-8 w-8 text-primary" />
 						</div>
 						
-						<h3 className="text-xl font-semibold text-gray-900 mb-2">
+						<h3 className="text-xl font-medium text-gray-900 mb-2">
 							Upload once.
 						</h3>
-						<h3 className="text-xl font-semibold text-gray-900 mb-4">
+						<h3 className="text-xl font-medium text-gray-900 mb-4">
 							Sync the class.
 						</h3>
 						

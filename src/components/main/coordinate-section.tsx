@@ -13,7 +13,7 @@ export default function CoordinateSection() {
 					
 					{/* Left Content Side */}
 					<div className="lg:col-span-6 text-left space-y-6">
-						<h2 className="text-3xl md:text-4xl lg:text-[43px] font-semibold text-gray-900 leading-tight">
+						<h2 className="text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">
 							You won't believe how quickly you can{" "}
 							<span className="italic text-primary font-normal">coordinate with YourCR</span>
 						</h2>

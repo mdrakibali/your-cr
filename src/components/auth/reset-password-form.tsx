@@ -1,168 +1,211 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, Lock, ShieldCheck } from "lucide-react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle,
+  Lock,
+  ShieldAlert,
+  ShieldCheck,
+} from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-const inputCls =
-  "w-full pl-10 pr-4 py-2.5 text-sm border border-[oklch(0.922_0_0)] rounded-lg text-gray-900 placeholder:text-gray-400 bg-white outline-none focus:border-[#2459c8] transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  resetPasswordSchema,
+  type ResetPasswordFormData,
+} from "@/validation/auth";
 
 export default function ResetPasswordForm({ token }: { token: string }) {
-  const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
-
   const hasToken = Boolean(token);
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setLoading(true);
+  const form = useForm<ResetPasswordFormData>({
+    resolver: zodResolver(resetPasswordSchema),
+    shouldFocusError: true,
+    defaultValues: { password: "", confirmPassword: "" },
+  });
+
+  const { isSubmitting } = form.formState;
+
+  const onSubmit = async (_data: ResetPasswordFormData) => {
     // TODO: call reset-password API with token
-    setTimeout(() => {
-      setLoading(false);
-      setSuccess(true);
-    }, 1500);
+    await new Promise((r) => setTimeout(r, 1500));
+    setSuccess(true);
   };
 
   return (
-    <div className="w-full max-w-[420px]">
-      {/* Logo */}
-      <Link href="/" className="block mb-8">
-        <span className="text-[#2459c8] font-bold text-xl font-[family-name:var(--font-besley)]">
-          YourCR
-        </span>
-      </Link>
+    <div className="w-full max-w-[520px] mx-auto">
+      <Card className="w-full rounded-2xl ring-1 ring-border shadow-none">
+        <CardContent className="p-5 xs:p-6 sm:p-8">
+          {/* Logo */}
+          <Link href="/" className="block mb-7">
+            <span className="text-[#2459c8] font-bold text-xl font-[family-name:var(--font-besley)]">
+              YourCR
+            </span>
+          </Link>
 
-      {/* Header */}
-      <div className="mb-7">
-        <h1 className="text-2xl font-medium text-gray-900 mb-1.5 font-[family-name:var(--font-besley)]">
-          Create a new password
-        </h1>
-        <p className="text-sm text-gray-500">
-          Choose a strong password for your YourCR account.
-        </p>
-      </div>
-
-      {/* Invalid token warning */}
-      {!hasToken && (
-        <div className="mb-6 flex gap-3 bg-red-50 border border-red-200 rounded-lg p-4">
-          <ShieldCheck className="size-4 text-red-500 shrink-0 mt-0.5" />
-          <div>
-            <p className="text-sm font-medium text-red-700">Invalid or expired link</p>
-            <p className="text-xs text-red-500 mt-0.5">
-              This reset link is missing or has expired.{" "}
-              <Link href="/forgot-password" className="font-semibold underline">
-                Request a new one.
-              </Link>
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-2xl font-medium text-foreground mb-1.5 font-[family-name:var(--font-besley)]">
+              Create a new password
+            </h1>
+            <p className="text-sm text-muted-foreground">
+              Choose a strong password for your YourCR account.
             </p>
           </div>
-        </div>
-      )}
 
-      {/* Success state */}
-      {success ? (
-        <div className="space-y-5">
-          <div className="flex gap-3 bg-green-50 border border-green-200 rounded-lg p-4">
-            <span className="size-4 rounded-full bg-green-500 shrink-0 mt-0.5 flex items-center justify-center">
-              <svg viewBox="0 0 12 12" fill="none" className="size-3">
-                <path d="M2 6l3 3 5-5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </span>
-            <div>
-              <p className="text-sm font-medium text-green-800">Password updated!</p>
-              <p className="text-xs text-green-600 mt-0.5">
-                Your password has been changed. You can now sign in.
-              </p>
+          {/* Invalid token */}
+          {!hasToken && (
+            <div className="mb-6 flex gap-3 bg-destructive/5 border border-destructive/20 rounded-xl p-4">
+              <ShieldAlert className="size-5 text-destructive shrink-0 mt-0.5" />
+              <div>
+                <p className="text-sm font-semibold text-destructive">
+                  Invalid or expired link
+                </p>
+                <p className="text-xs text-destructive/80 mt-0.5">
+                  This reset link is missing or has expired.{" "}
+                  <Link
+                    href="/forgot-password"
+                    className="font-semibold underline"
+                  >
+                    Request a new one.
+                  </Link>
+                </p>
+              </div>
             </div>
-          </div>
-          <Link
-            href="/login"
-            className="w-full py-2.5 bg-[#2459c8] text-white text-sm font-semibold rounded-lg flex items-center justify-center gap-2 cursor-pointer transition-colors"
-          >
-            Go to Sign In <ArrowRight className="size-4" />
-          </Link>
-        </div>
-      ) : (
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label
-              htmlFor="reset-password"
-              className="block text-sm font-medium text-gray-700 mb-1.5"
-            >
-              New Password
-            </label>
-            <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <Lock className="size-4 text-gray-400" />
-              </span>
-              <input
-                id="reset-password"
-                type="password"
-                name="password"
-                placeholder="••••••••"
-                required
-                minLength={8}
-                disabled={!hasToken}
-                className={inputCls}
-              />
+          )}
+
+          {success ? (
+            /* ── Success ── */
+            <div className="space-y-5">
+              <div className="flex gap-3 bg-green-50 border border-green-200 rounded-xl p-4">
+                <CheckCircle className="size-5 text-green-600 shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-sm font-semibold text-green-800">
+                    Password updated!
+                  </p>
+                  <p className="text-xs text-green-700 mt-0.5">
+                    Your password has been changed successfully.
+                  </p>
+                </div>
+              </div>
+              <Button
+                asChild
+                className="w-full h-10 bg-[#2459c8] text-white font-semibold cursor-pointer"
+              >
+                <Link href="/login">
+                  Go to Sign In <ArrowRight className="size-4" />
+                </Link>
+              </Button>
             </div>
-            <p className="mt-1 text-[11px] text-gray-400">Minimum 8 characters</p>
-          </div>
+          ) : (
+            /* ── Form ── */
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-5"
+                noValidate
+              >
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field, fieldState }) => (
+                    <FormItem>
+                      <FormLabel>New Password</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <Lock className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none z-10" />
+                          <Input
+                            {...field}
+                            id="reset-password"
+                            type="password"
+                            placeholder="••••••••"
+                            disabled={!hasToken}
+                            aria-invalid={!!fieldState.error}
+                            className="pl-9 h-10 w-full"
+                          />
+                        </div>
+                      </FormControl>
+                      <FormDescription>
+                        Min 8 characters, 1 uppercase letter, 1 number
+                      </FormDescription>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          <div>
-            <label
-              htmlFor="reset-confirm"
-              className="block text-sm font-medium text-gray-700 mb-1.5"
-            >
-              Confirm New Password
-            </label>
-            <div className="relative">
-              <span className="absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none">
-                <ShieldCheck className="size-4 text-gray-400" />
-              </span>
-              <input
-                id="reset-confirm"
-                type="password"
-                name="confirmPassword"
-                placeholder="••••••••"
-                required
-                disabled={!hasToken}
-                className={inputCls}
-              />
-            </div>
-          </div>
+                <FormField
+                  control={form.control}
+                  name="confirmPassword"
+                  render={({ field, fieldState }) => (
+                    <FormItem>
+                      <FormLabel>Confirm New Password</FormLabel>
+                      <FormControl>
+                        <div className="relative">
+                          <ShieldCheck className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground pointer-events-none z-10" />
+                          <Input
+                            {...field}
+                            id="reset-confirm"
+                            type="password"
+                            placeholder="••••••••"
+                            disabled={!hasToken}
+                            aria-invalid={!!fieldState.error}
+                            className="pl-9 h-10 w-full"
+                          />
+                        </div>
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
-          <ul className="text-xs text-gray-400 space-y-1 list-disc list-inside">
-            <li>At least 8 characters long</li>
-            <li>Use a mix of letters, numbers and symbols</li>
-            <li>Avoid using your email or name</li>
-          </ul>
+                <Button
+                  id="reset-submit"
+                  type="submit"
+                  disabled={!hasToken || isSubmitting}
+                  className="w-full h-10 bg-[#2459c8] text-white font-semibold cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                      Updating…
+                    </>
+                  ) : (
+                    <>
+                      Update Password <ArrowRight className="size-4" />
+                    </>
+                  )}
+                </Button>
 
-          <button
-            id="reset-submit"
-            type="submit"
-            disabled={!hasToken || loading}
-            className="w-full py-2.5 bg-[#2459c8] text-white text-sm font-semibold rounded-lg flex items-center justify-center gap-2 cursor-pointer transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-          >
-            {loading ? (
-              <>
-                <span className="size-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                Updating…
-              </>
-            ) : (
-              <>
-                Update Password <ArrowRight className="size-4" />
-              </>
-            )}
-          </button>
-
-          <Link
-            href="/login"
-            className="w-full py-2.5 bg-white border border-[oklch(0.922_0_0)] text-gray-700 text-sm font-semibold rounded-lg flex items-center justify-center gap-2 cursor-pointer transition-colors"
-          >
-            <ArrowLeft className="size-4" /> Back to Sign In
-          </Link>
-        </form>
-      )}
+                <Button
+                  asChild
+                  variant="outline"
+                  className="w-full h-10 cursor-pointer"
+                >
+                  <Link href="/login">
+                    <ArrowLeft className="size-4" /> Back to Sign In
+                  </Link>
+                </Button>
+              </form>
+            </Form>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }

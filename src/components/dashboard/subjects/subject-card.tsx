@@ -26,10 +26,10 @@ export default function SubjectCard({
   onDelete,
 }: SubjectCardProps) {
   return (
-    <div className="bg-white border border-border rounded-xl p-5 flex flex-col justify-between hover:border-[#2459c8]/30 transition-colors">
+    <div className="bg-white border border-border rounded-md p-5 flex flex-col justify-between hover:border-[#2459c8]/30 transition-colors">
       <div className="space-y-3">
         <div className="flex items-center justify-between gap-2">
-          <span className="text-xs font-bold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-full">
+          <span className="text-xs font-bold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-md">
             {subject.code}
           </span>
           <span className="text-xs text-muted-foreground font-semibold">

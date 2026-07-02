@@ -101,7 +101,7 @@ export default function TeacherDialog({
           <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
             
             {/* Profile Image Uploader */}
-            <div className="flex flex-col sm:flex-row items-center gap-4 p-4 border border-border rounded-xl bg-muted/10">
+            <div className="flex flex-col sm:flex-row items-center gap-4 p-4 border border-border rounded-md bg-muted/10">
               <div className="relative size-20 rounded-full border border-border bg-white flex items-center justify-center overflow-hidden shrink-0">
                 {imagePreview ? (
                   <img src={imagePreview} alt="Preview" className="size-full object-cover" />
@@ -113,7 +113,7 @@ export default function TeacherDialog({
                 <p className="text-xs font-semibold text-foreground">Profile Image</p>
                 <p className="text-[11px] text-muted-foreground">JPG, PNG under 1MB recommended.</p>
                 <div className="flex items-center justify-center sm:justify-start gap-2">
-                  <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2459c8] hover:bg-[#1a44a1] text-white text-xs font-semibold rounded-lg transition-colors">
+                  <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2459c8] hover:bg-[#1a44a1] text-white text-xs font-semibold rounded-md transition-colors">
                     <Upload className="size-3.5" /> Upload File
                     <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                   </label>

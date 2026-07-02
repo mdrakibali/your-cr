@@ -16,6 +16,7 @@ import {
   Presentation,
   ClipboardList,
   LogOut,
+  School,
 } from "lucide-react";
 
 type Role = "CR" | "STUDENT";
@@ -79,6 +80,12 @@ export const NAV_ITEMS = [
     name: "Classes",
     href: "/dashboard/classes",
     icon: Presentation,
+    roles: ["CR", "STUDENT"],
+  },
+  {
+    name: "Academic Info",
+    href: "/dashboard/academic",
+    icon: School,
     roles: ["CR", "STUDENT"],
   },
   {

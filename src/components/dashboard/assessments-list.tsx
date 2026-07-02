@@ -175,7 +175,7 @@ export default function AssessmentsList() {
           })}
         </div>
       ) : (
-        <div className="text-center py-16 border border-dashed border-border rounded-xl bg-white col-span-2">
+        <div className="text-center py-16 border border-dashed border-border rounded-md bg-white col-span-2">
           <ClipboardList className="size-8 text-muted-foreground mx-auto mb-2" />
           <p className="text-sm font-semibold text-foreground">No assessments found</p>
           <p className="text-xs text-muted-foreground mt-1">Try matching another query or assessment type filter.</p>

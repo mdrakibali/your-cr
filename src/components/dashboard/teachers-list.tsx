@@ -115,7 +115,7 @@ export default function TeachersList() {
       />
 
       {/* Roster Layout */}
-      <div className="bg-white border border-border rounded-xl overflow-hidden shadow-none">
+      <div className="bg-white border border-border rounded-md overflow-hidden shadow-none">
         {filteredTeachers.length > 0 ? (
           <>
             {/* Desktop Table View */}
@@ -170,7 +170,7 @@ export default function TeachersList() {
             </div>
           </>
         ) : (
-          <div className="text-center py-12 border border-dashed border-border rounded-xl bg-white">
+          <div className="text-center py-12 border border-dashed border-border rounded-md bg-white">
             <GraduationCap className="size-8 text-muted-foreground mx-auto mb-2" />
             <p className="text-sm font-semibold text-foreground">No instructors found</p>
             <p className="text-xs text-muted-foreground mt-1">Try matching another query search.</p>

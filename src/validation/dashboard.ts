@@ -60,4 +60,16 @@ export const assessmentSchema = z.object({
   description: z.string().optional(),
 });
 
-export type AssessmentFormData = z.infer<typeof assessmentSchema>;
+export const routineSchema = z.object({
+  code: z.string().min(1, "Course code is required"),
+  title: z.string().min(1, "Course title is required"),
+  day: z.string().min(1, "Select day is required"),
+  time: z.string().min(1, "Class timing is required"),
+  room: z.string().min(1, "Room/Location is required"),
+  teacher: z.string().min(1, "Teacher/Instructor is required"),
+  classType: z.enum(["ONLINE", "OFFLINE"], {
+    required_error: "Class type is required",
+  }),
+});
+
+export type RoutineFormData = z.infer<typeof routineSchema>;

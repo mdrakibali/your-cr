@@ -139,7 +139,7 @@ export default function NoticeBoard() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-16 border border-dashed border-border rounded-xl bg-white">
+        <div className="text-center py-16 border border-dashed border-border rounded-md bg-white">
           <Megaphone className="size-8 text-muted-foreground mx-auto mb-2" />
           <p className="text-sm font-semibold text-foreground">No notices found</p>
           <p className="text-xs text-muted-foreground mt-1">Try matching another query or priority filter.</p>

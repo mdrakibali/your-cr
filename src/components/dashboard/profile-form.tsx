@@ -90,7 +90,7 @@ export default function ProfileForm() {
         </p>
       </div>
 
-      <Card className="rounded-xl border border-border shadow-none bg-white">
+      <Card className="rounded-md border border-border shadow-none bg-white">
         <CardHeader>
           <div className="flex items-center gap-3">
             {imagePreview ? (
@@ -117,7 +117,7 @@ export default function ProfileForm() {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               
               {/* Profile Image Upload Box */}
-              <div className="flex flex-col sm:flex-row items-center gap-4 p-4 border border-border rounded-xl bg-muted/10">
+              <div className="flex flex-col sm:flex-row items-center gap-4 p-4 border border-border rounded-md bg-muted/10">
                 <div className="relative size-16 rounded-full border border-border bg-white flex items-center justify-center overflow-hidden shrink-0">
                   {imagePreview ? (
                     <img src={imagePreview} alt="Preview" className="size-full object-cover" />
@@ -128,7 +128,7 @@ export default function ProfileForm() {
                 <div className="flex-1 space-y-1.5 text-center sm:text-left">
                   <p className="text-xs font-semibold text-foreground">Upload Avatar Profile</p>
                   <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2459c8] hover:bg-[#1a44a1] text-white text-[11px] font-semibold rounded-lg transition-colors">
+                    <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2459c8] hover:bg-[#1a44a1] text-white text-[11px] font-semibold rounded-md transition-colors">
                       <Upload className="size-3" /> Select Image
                       <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
                     </label>

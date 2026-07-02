@@ -93,14 +93,14 @@ export default function NotificationsList() {
             <div
               key={notif.id}
               className={cn(
-                "p-5 rounded-xl border flex gap-4 bg-white transition-colors",
+                "p-5 rounded-md border flex gap-4 bg-white transition-colors",
                 notif.read ? "border-border" : "border-primary/20 bg-primary/5/10"
               )}
             >
               {/* Type indicator icon */}
               <div
                 className={cn(
-                  "p-2.5 rounded-xl shrink-0 h-10 w-10 flex items-center justify-center",
+                  "p-2.5 rounded-md shrink-0 h-10 w-10 flex items-center justify-center",
                   notif.read ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary"
                 )}
               >
@@ -125,7 +125,7 @@ export default function NotificationsList() {
               {/* Remove action */}
               <button
                 onClick={() => handleDelete(notif.id)}
-                className="text-muted-foreground hover:text-red-600 transition-colors p-1.5 shrink-0 self-start cursor-pointer hover:bg-red-50 rounded-lg"
+                className="text-muted-foreground hover:text-red-600 transition-colors p-1.5 shrink-0 self-start cursor-pointer hover:bg-red-50 rounded-md"
                 aria-label="Delete notification"
               >
                 <Trash2 className="size-4" />
@@ -135,7 +135,7 @@ export default function NotificationsList() {
         })}
 
         {notifications.length === 0 && (
-          <div className="text-center py-16 border border-dashed border-border rounded-xl bg-white">
+          <div className="text-center py-16 border border-dashed border-border rounded-md bg-white">
             <Bell className="size-8 text-muted-foreground mx-auto mb-2" />
             <p className="text-sm font-semibold text-foreground">All caught up!</p>
             <p className="text-xs text-muted-foreground mt-1">No notifications active right now.</p>

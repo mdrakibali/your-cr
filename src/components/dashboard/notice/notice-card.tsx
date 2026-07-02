@@ -27,14 +27,14 @@ export default function NoticeCard({
   onDelete,
 }: NoticeCardProps) {
   return (
-    <Card className="rounded-xl border border-border shadow-none bg-white">
+    <Card className="rounded-md border border-border shadow-none bg-white">
       <CardContent className="p-6 space-y-4">
         {/* Card Meta info */}
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <span
               className={cn(
-                "text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wider",
+                "text-[9px] font-bold px-2 py-0.5 rounded-md tracking-wider",
                 notice.priority === "URGENT"
                   ? "bg-red-100 text-red-700"
                   : notice.priority === "IMPORTANT"
@@ -90,7 +90,7 @@ export default function NoticeCard({
             {isCR && (
               <button
                 onClick={onDelete}
-                className="text-muted-foreground hover:text-red-600 transition-colors p-1 rounded-lg cursor-pointer hover:bg-red-50"
+                className="text-muted-foreground hover:text-red-600 transition-colors p-1 rounded-md cursor-pointer hover:bg-red-50"
                 aria-label="Remove notice"
               >
                 <Trash2 className="size-4" />

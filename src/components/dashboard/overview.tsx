@@ -106,7 +106,7 @@ export default function Overview() {
   return (
     <div className="space-y-8">
       {/* Welcome Banner */}
-      <div className="bg-primary/5 border border-primary/20 rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="bg-primary/5 border border-primary/20 rounded-md p-6 sm:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
           <h2 className="text-xl sm:text-2xl font-bold text-foreground font-[family-name:var(--font-besley)]">
             Hello, Rakib Hossain!
@@ -155,13 +155,13 @@ export default function Overview() {
         {stats.map((stat, i) => {
           const Icon = stat.icon;
           return (
-            <Card key={i} className="rounded-xl border border-border shadow-none bg-white">
+            <Card key={i} className="rounded-md border border-border shadow-none bg-white">
               <CardContent className="p-6">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-medium text-muted-foreground">
                     {stat.title}
                   </span>
-                  <div className="p-2 bg-primary/10 rounded-lg text-primary">
+                  <div className="p-2 bg-primary/10 rounded-md text-primary">
                     <Icon className="size-4" />
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export default function Overview() {
               <div
                 key={i}
                 className={cn(
-                  "p-5 rounded-xl border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white",
+                  "p-5 rounded-md border flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white",
                   cls.status === "CANCELLED"
                     ? "border-red-200 bg-red-50/10"
                     : cls.status === "RESCHEDULED"
@@ -208,7 +208,7 @@ export default function Overview() {
               >
                 <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-full">
+                    <span className="text-xs font-bold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-md">
                       {cls.code}
                     </span>
                     <span className="text-sm font-semibold text-foreground">
@@ -232,7 +232,7 @@ export default function Overview() {
 
                   <span
                     className={cn(
-                      "text-[10px] font-bold px-2 py-1 rounded-full",
+                      "text-[10px] font-bold px-2 py-1 rounded-md",
                       cls.status === "COMPLETED" && "bg-green-100 text-green-700",
                       cls.status === "RESCHEDULED" && "bg-amber-100 text-amber-700",
                       cls.status === "ACTIVE" && "bg-blue-100 text-blue-700",
@@ -263,12 +263,12 @@ export default function Overview() {
 
           <div className="space-y-4">
             {recentNotices.map((notice) => (
-              <Card key={notice.id} className="rounded-xl border border-border shadow-none bg-white">
+              <Card key={notice.id} className="rounded-md border border-border shadow-none bg-white">
                 <CardHeader className="p-4 pb-2">
                   <div className="flex items-center justify-between gap-2">
                     <span
                       className={cn(
-                        "text-[9px] font-bold px-2 py-0.5 rounded-full",
+                        "text-[9px] font-bold px-2 py-0.5 rounded-md",
                         notice.priority === "URGENT"
                           ? "bg-red-100 text-red-700"
                           : "bg-amber-100 text-amber-700"

@@ -37,7 +37,7 @@ export default function AssessmentCard({
   return (
     <Card
       className={cn(
-        "rounded-xl border shadow-none transition-all",
+        "rounded-md border shadow-none transition-all",
         isDone
           ? "border-green-200 bg-green-50/5 opacity-75"
           : isOverdue
@@ -50,7 +50,7 @@ export default function AssessmentCard({
         <div className="flex items-center justify-between gap-3">
           <span
             className={cn(
-              "text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wider",
+              "text-[9px] font-bold px-2 py-0.5 rounded-md tracking-wider",
               assessment.type === "ASSIGNMENT" && "bg-blue-100 text-blue-700",
               assessment.type === "QUIZ" && "bg-purple-100 text-purple-700",
               assessment.type === "EXAM" && "bg-red-100 text-red-700",
@@ -62,7 +62,7 @@ export default function AssessmentCard({
 
           <span
             className={cn(
-              "text-[10px] font-bold px-2 py-0.5 rounded-full",
+              "text-[10px] font-bold px-2 py-0.5 rounded-md",
               isDone
                 ? "bg-green-100 text-green-700"
                 : isOverdue
@@ -123,7 +123,7 @@ export default function AssessmentCard({
           {isCR && (
             <button
               onClick={onDelete}
-              className="text-muted-foreground hover:text-red-600 transition-colors p-1.5 rounded-lg cursor-pointer hover:bg-red-50"
+              className="text-muted-foreground hover:text-red-600 transition-colors p-1.5 rounded-md cursor-pointer hover:bg-red-50"
               aria-label="Remove assessment"
             >
               <Trash2 className="size-4" />

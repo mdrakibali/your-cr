@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight, Lock, Mail } from "lucide-react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import Logo from "@/components/common/logo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -36,11 +37,9 @@ export default function LoginForm() {
       <Card className="w-full rounded-2xl ring-1 ring-border shadow-none">
         <CardContent className="p-5 xs:p-6 sm:p-8">
           {/* Logo */}
-          <Link href="/" className="block mb-7">
-            <span className="text-[#2459c8] font-bold text-xl font-[family-name:var(--font-besley)]">
-              YourCR
-            </span>
-          </Link>
+          <div className="mb-7 flex justify-center">
+            <Logo />
+          </div>
 
           {/* Header */}
           <div className="mb-8">

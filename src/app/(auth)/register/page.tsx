@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Create your Class Representative account on YourCR",
 };
 
-const Register = () => <RegisterForm />;
+const Register = () =>{
+  return <RegisterForm />
+};
 
 export default Register;

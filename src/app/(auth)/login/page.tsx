@@ -6,6 +6,8 @@ export const metadata: Metadata = {
   description: "Sign in to your YourCR CR account",
 };
 
-const Login = () => <LoginForm />;
+const Login = () =>{
+  return <LoginForm />
+}
 
 export default Login;

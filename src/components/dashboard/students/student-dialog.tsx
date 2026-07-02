@@ -1,10 +1,11 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Upload, X, User } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -34,17 +35,38 @@ export default function StudentDialog({
   onClose,
   onSubmit,
 }: StudentDialogProps) {
+  const [imagePreview, setImagePreview] = useState<string>("");
+
   const form = useForm<StudentInviteFormData>({
     resolver: zodResolver(studentInviteSchema),
     shouldFocusError: true,
-    defaultValues: { name: "", roll: "", email: "", phone: "" },
+    defaultValues: { name: "", roll: "", email: "", phone: "", avatar: "" },
   });
 
   useEffect(() => {
     if (isOpen) {
-      form.reset({ name: "", roll: "", email: "", phone: "" });
+      form.reset({ name: "", roll: "", email: "", phone: "", avatar: "" });
+      setImagePreview("");
     }
   }, [isOpen, form]);
+
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result as string;
+        setImagePreview(base64String);
+        form.setValue("avatar", base64String);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const clearImage = () => {
+    setImagePreview("");
+    form.setValue("avatar", "");
+  };
 
   const handleFormSubmit = (data: StudentInviteFormData) => {
     onSubmit(data);
@@ -53,8 +75,8 @@ export default function StudentDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={(o) => !o && onClose()}>
-      {/* Spacious dialog content container (max-w-2xl) */}
-      <DialogContent className="bg-white max-w-2xl">
+      {/* Spacious dialog content container (sm:max-w-3xl) */}
+      <DialogContent className="bg-white sm:max-w-3xl">
         <DialogHeader>
           <DialogTitle className="font-[family-name:var(--font-besley)] text-lg">
             Invite Student
@@ -65,7 +87,34 @@ export default function StudentDialog({
         </DialogHeader>
 
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(handleFormSubmit)} className="space-y-6">
+            
+            {/* Student Image Uploader */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 p-4 border border-border rounded-xl bg-muted/10">
+              <div className="relative size-20 rounded-full border border-border bg-white flex items-center justify-center overflow-hidden shrink-0">
+                {imagePreview ? (
+                  <img src={imagePreview} alt="Preview" className="size-full object-cover" />
+                ) : (
+                  <User className="size-8 text-muted-foreground" />
+                )}
+              </div>
+              <div className="flex-1 space-y-2 text-center sm:text-left">
+                <p className="text-xs font-semibold text-foreground">Student Profile Picture</p>
+                <p className="text-[11px] text-muted-foreground">JPG, PNG under 1MB recommended.</p>
+                <div className="flex items-center justify-center sm:justify-start gap-2">
+                  <label className="cursor-pointer inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#2459c8] hover:bg-[#1a44a1] text-white text-xs font-semibold rounded-lg transition-colors">
+                    <Upload className="size-3.5" /> Upload Photo
+                    <input type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+                  </label>
+                  {imagePreview && (
+                    <Button type="button" variant="outline" size="sm" onClick={clearImage} className="h-8 text-red-600 hover:text-red-700 cursor-pointer">
+                      <X className="size-3.5" /> Clear
+                    </Button>
+                  )}
+                </div>
+              </div>
+            </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <FormField
                 control={form.control}

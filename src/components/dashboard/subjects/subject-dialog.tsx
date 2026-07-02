@@ -63,8 +63,8 @@ export default function SubjectDialog({
 
   return (
     <Dialog open={isOpen} onOpenChange={(o) => !o && onClose()}>
-      {/* Spacious dialog content container (max-w-2xl) */}
-      <DialogContent className="bg-white max-w-2xl">
+      {/* Spacious dialog content container (sm:max-w-2xl) */}
+      <DialogContent className="bg-white sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="font-[family-name:var(--font-besley)] text-lg">
             {title}

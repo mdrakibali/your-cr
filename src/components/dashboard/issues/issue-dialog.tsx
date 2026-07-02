@@ -21,7 +21,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import {
   Select,
@@ -30,32 +29,32 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { noticeSchema, type NoticeFormData } from "@/validation/dashboard";
+import { issueSchema, type IssueFormData } from "@/validation/dashboard";
 
-interface NoticeDialogProps {
+interface IssueDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: NoticeFormData) => void;
+  onSubmit: (data: IssueFormData) => void;
 }
 
-export default function NoticeDialog({
+export default function IssueDialog({
   isOpen,
   onClose,
   onSubmit,
-}: NoticeDialogProps) {
-  const form = useForm<NoticeFormData>({
-    resolver: zodResolver(noticeSchema),
+}: IssueDialogProps) {
+  const form = useForm<IssueFormData>({
+    resolver: zodResolver(issueSchema),
     shouldFocusError: true,
-    defaultValues: { title: "", body: "", priority: "NORMAL", attachmentUrl: "" },
+    defaultValues: { title: "", description: "", category: "" },
   });
 
   useEffect(() => {
     if (isOpen) {
-      form.reset({ title: "", body: "", priority: "NORMAL", attachmentUrl: "" });
+      form.reset({ title: "", description: "", category: "" });
     }
   }, [isOpen, form]);
 
-  const handleFormSubmit = (data: NoticeFormData) => {
+  const handleFormSubmit = (data: IssueFormData) => {
     onSubmit(data);
     form.reset();
   };
@@ -66,10 +65,10 @@ export default function NoticeDialog({
       <DialogContent className="bg-white sm:max-w-2xl">
         <DialogHeader>
           <DialogTitle className="font-[family-name:var(--font-besley)] text-lg">
-            Publish Notice
+            File Classroom Issue
           </DialogTitle>
           <DialogDescription>
-            Broadcast an announcement to the sessional class feed.
+            Report a schedule conflict, class resource issue, or exam clash.
           </DialogDescription>
         </DialogHeader>
 
@@ -80,9 +79,9 @@ export default function NoticeDialog({
               name="title"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>Notice Title</FormLabel>
+                  <FormLabel>Short Summary</FormLabel>
                   <FormControl>
-                    <Input {...field} placeholder="e.g. Schedule Change or Fee submission" aria-invalid={!!fieldState.error} />
+                    <Input {...field} placeholder="e.g. Reschedule Clash with Lab" aria-invalid={!!fieldState.error} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -91,20 +90,21 @@ export default function NoticeDialog({
 
             <FormField
               control={form.control}
-              name="priority"
+              name="category"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Priority Level</FormLabel>
+                  <FormLabel>Category</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="h-10 w-full">
-                        <SelectValue placeholder="Select priority" />
+                        <SelectValue placeholder="Select issue category" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="NORMAL">Normal — General Updates</SelectItem>
-                      <SelectItem value="IMPORTANT">Important — Submission deadlines</SelectItem>
-                      <SelectItem value="URGENT">Urgent — Immediate cancellations/reschedules</SelectItem>
+                      <SelectItem value="Routine Conflict">Routine Conflict / Clash</SelectItem>
+                      <SelectItem value="Facility/Resource">Lab / Classroom Facility</SelectItem>
+                      <SelectItem value="Syllabus/Course">Syllabus / Credit Hours Issues</SelectItem>
+                      <SelectItem value="Others">Others</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -114,28 +114,13 @@ export default function NoticeDialog({
 
             <FormField
               control={form.control}
-              name="body"
+              name="description"
               render={({ field, fieldState }) => (
                 <FormItem>
-                  <FormLabel>Notice Content</FormLabel>
+                  <FormLabel>Detailed Explanation</FormLabel>
                   <FormControl>
-                    <Textarea {...field} rows={5} placeholder="Provide details regarding this notice..." aria-invalid={!!fieldState.error} className="resize-none" />
+                    <Textarea {...field} rows={4} placeholder="Describe the routine conflict or problem in detail..." aria-invalid={!!fieldState.error} className="resize-none" />
                   </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="attachmentUrl"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>Attachment / Reference Link (Optional)</FormLabel>
-                  <FormControl>
-                    <Input {...field} placeholder="e.g. https://drive.google.com/..." aria-invalid={!!fieldState.error} />
-                  </FormControl>
-                  <FormDescription>Google Drive link, spreadsheet format, or notice PDF.</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -146,7 +131,7 @@ export default function NoticeDialog({
                 Cancel
               </Button>
               <Button type="submit" className="bg-[#2459c8] text-white cursor-pointer">
-                Publish Notice
+                Submit Report
               </Button>
             </DialogFooter>
           </form>
@@ -155,3 +140,4 @@ export default function NoticeDialog({
     </Dialog>
   );
 }
+// Let's resolve the `DialogProps &` type definition type checking issue by removing unused types from imports/parameters.

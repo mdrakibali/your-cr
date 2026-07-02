@@ -11,6 +11,7 @@ interface Teacher {
   email: string;
   phone: string;
   subject: string;
+  avatar?: string;
 }
 
 interface TeacherCardProps {
@@ -26,13 +27,35 @@ export default function TeacherCard({
   onEdit,
   onDelete,
 }: TeacherCardProps) {
+  const initials = teacher.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
+
   return (
     <>
       {/* Desktop row layout inside a table */}
       <tr className="hidden md:table-row hover:bg-muted/10 transition-colors">
         <td className="p-4">
-          <p className="font-semibold text-foreground text-sm">{teacher.name}</p>
-          <p className="text-xs text-muted-foreground">{teacher.designation}</p>
+          <div className="flex items-center gap-3">
+            {teacher.avatar ? (
+              <img
+                src={teacher.avatar}
+                alt={teacher.name}
+                className="size-10 rounded-full object-cover border border-border shrink-0"
+              />
+            ) : (
+              <div className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-sm shrink-0">
+                {initials}
+              </div>
+            )}
+            <div>
+              <p className="font-semibold text-foreground text-sm">{teacher.name}</p>
+              <p className="text-xs text-muted-foreground">{teacher.designation}</p>
+            </div>
+          </div>
         </td>
         <td className="p-4 text-sm text-foreground font-medium">
           {teacher.subject}
@@ -73,10 +96,25 @@ export default function TeacherCard({
 
       {/* Mobile Card Layout */}
       <div className="p-5 space-y-4 bg-white border-b border-border md:hidden">
+        <div className="flex items-center gap-3">
+          {teacher.avatar ? (
+            <img
+              src={teacher.avatar}
+              alt={teacher.name}
+              className="size-12 rounded-full object-cover border border-border shrink-0"
+            />
+          ) : (
+            <div className="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-base shrink-0">
+              {initials}
+            </div>
+          )}
+          <div>
+            <p className="font-bold text-foreground text-base">{teacher.name}</p>
+            <p className="text-xs text-muted-foreground">{teacher.designation}</p>
+          </div>
+        </div>
         <div>
-          <p className="font-bold text-foreground text-base">{teacher.name}</p>
-          <p className="text-xs text-muted-foreground">{teacher.designation}</p>
-          <span className="inline-block mt-2 text-xs font-semibold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-full">
+          <span className="inline-block text-xs font-semibold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-full">
             {teacher.subject}
           </span>
         </div>

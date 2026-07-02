@@ -33,7 +33,7 @@ export default function DeleteConfirmDialog({
 }: DeleteConfirmDialogProps) {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
-      <DialogContent className="bg-white max-w-[440px]">
+      <DialogContent className="bg-white sm:max-w-[440px]">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2 text-red-600 font-[family-name:var(--font-besley)]">
             <AlertTriangle className="size-5 shrink-0" />

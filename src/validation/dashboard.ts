@@ -6,6 +6,7 @@ export const teacherSchema = z.object({
   email: z.string().min(1, "Email is required").email("Enter a valid email address"),
   phone: z.string().min(1, "Phone number is required").min(5, "Enter a valid phone number"),
   subject: z.string().min(1, "Assigned subject is required"),
+  avatar: z.string().optional(),
 });
 
 export type TeacherFormData = z.infer<typeof teacherSchema>;
@@ -15,6 +16,7 @@ export const studentInviteSchema = z.object({
   roll: z.string().min(1, "Roll / ID is required"),
   email: z.string().min(1, "Email is required").email("Enter a valid email"),
   phone: z.string().min(1, "Phone is required").min(5, "Enter a valid phone number"),
+  avatar: z.string().optional(),
 });
 
 export type StudentInviteFormData = z.infer<typeof studentInviteSchema>;

@@ -12,6 +12,7 @@ interface Student {
   email: string;
   phone: string;
   status: string;
+  avatar?: string;
 }
 
 interface StudentCardProps {
@@ -26,13 +27,32 @@ export default function StudentCard({
   onDelete,
 }: StudentCardProps) {
   const isSelf = student.name === "Rakib Hossain";
+  const initials = student.name
+    .split(" ")
+    .map((n) => n[0])
+    .join("")
+    .slice(0, 2)
+    .toUpperCase();
 
   return (
     <>
       {/* Desktop row layout inside table */}
       <tr className="hidden md:table-row hover:bg-muted/10 transition-colors">
-        <td className="p-4 font-semibold text-foreground text-sm">
-          {student.name}
+        <td className="p-4">
+          <div className="flex items-center gap-3">
+            {student.avatar ? (
+              <img
+                src={student.avatar}
+                alt={student.name}
+                className="size-10 rounded-full object-cover border border-border shrink-0"
+              />
+            ) : (
+              <div className="size-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs shrink-0">
+                {initials}
+              </div>
+            )}
+            <span className="font-semibold text-foreground text-sm">{student.name}</span>
+          </div>
         </td>
         <td className="p-4 text-sm text-muted-foreground font-mono">
           {student.roll}
@@ -80,14 +100,27 @@ export default function StudentCard({
 
       {/* Mobile Card Layout */}
       <div className="p-5 space-y-3 bg-white border-b border-border md:hidden">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <p className="font-bold text-foreground text-base">{student.name}</p>
-            <p className="text-xs text-muted-foreground font-mono mt-0.5">{student.roll}</p>
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            {student.avatar ? (
+              <img
+                src={student.avatar}
+                alt={student.name}
+                className="size-12 rounded-full object-cover border border-border shrink-0"
+              />
+            ) : (
+              <div className="size-12 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-base shrink-0">
+                {initials}
+              </div>
+            )}
+            <div>
+              <p className="font-bold text-foreground text-base">{student.name}</p>
+              <p className="text-xs text-muted-foreground font-mono mt-0.5">{student.roll}</p>
+            </div>
           </div>
           <span
             className={cn(
-              "inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full",
+              "inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full shrink-0",
               student.status === "ACTIVE"
                 ? "bg-green-100 text-green-700"
                 : "bg-amber-100 text-amber-700"

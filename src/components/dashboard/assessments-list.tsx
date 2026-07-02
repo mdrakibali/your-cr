@@ -1,39 +1,13 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { ClipboardList, Plus, Trash2, Calendar, CheckSquare, Square, Clock } from "lucide-react";
+import React, { useState } from "react";
+import { Plus, ClipboardList } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { assessmentSchema, type AssessmentFormData } from "@/validation/dashboard";
-import { cn } from "@/lib/utils";
+import SearchFilterBar from "./search-filter-bar";
+import DeleteConfirmDialog from "./delete-confirm-dialog";
+import AssessmentCard from "./assessments/assessment-card";
+import AssessmentDialog from "./assessments/assessment-dialog";
+import { type AssessmentFormData } from "@/validation/dashboard";
 
 interface AssessmentsListProps {
   role: "CR" | "STUDENT";
@@ -69,35 +43,43 @@ const INITIAL_ASSESSMENTS = [
   },
 ];
 
+const FILTER_OPTIONS = [
+  { label: "All Tasks", value: "ALL" },
+  { label: "Assignments", value: "ASSIGNMENT" },
+  { label: "Quizzes", value: "QUIZ" },
+  { label: "Exams", value: "EXAM" },
+  { label: "Labs", value: "LAB" },
+];
+
 export default function AssessmentsList({ role }: AssessmentsListProps) {
   const isCR = role === "CR";
   const [assessments, setAssessments] = useState(INITIAL_ASSESSMENTS);
-  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [filterValue, setFilterValue] = useState("ALL");
+
+  // Local state checklist
   const [checkedIds, setCheckedIds] = useState<string[]>([]);
 
-  const form = useForm<AssessmentFormData>({
-    resolver: zodResolver(assessmentSchema),
-    shouldFocusError: true,
-    defaultValues: { title: "", subject: "", type: "ASSIGNMENT", dueDate: "", dueTime: "", description: "" },
-  });
+  // Modals state
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const onSubmit = (data: AssessmentFormData) => {
     setAssessments([
       ...assessments,
       {
-        id: String(assessments.length + 1),
+        id: String(Date.now()),
         ...data,
         description: data.description ?? "",
       },
     ]);
     setIsAddOpen(false);
-    form.reset();
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm("Are you sure you want to remove this assessment?")) {
-      setAssessments(assessments.filter((a) => a.id !== id));
-    }
+  const confirmDelete = () => {
+    if (!deletingId) return;
+    setAssessments(assessments.filter((a) => a.id !== deletingId));
+    setDeletingId(null);
   };
 
   const toggleCheck = (id: string) => {
@@ -124,6 +106,18 @@ export default function AssessmentsList({ role }: AssessmentsListProps) {
     return `${diffDays} days left`;
   };
 
+  // Client-side filtering logic
+  const filteredAssessments = assessments.filter((a) => {
+    const query = searchValue.toLowerCase().trim();
+    const matchesSearch =
+      !query ||
+      a.title.toLowerCase().includes(query) ||
+      a.subject.toLowerCase().includes(query) ||
+      (a.description && a.description.toLowerCase().includes(query));
+    const matchesFilter = filterValue === "ALL" || a.type === filterValue;
+    return matchesSearch && matchesFilter;
+  });
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -148,247 +142,62 @@ export default function AssessmentsList({ role }: AssessmentsListProps) {
         )}
       </div>
 
+      {/* Search and Filters */}
+      <SearchFilterBar
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        searchPlaceholder="Search assessments by title, subject, or description..."
+        filterValue={filterValue}
+        onFilterChange={setFilterValue}
+        filterOptions={FILTER_OPTIONS}
+        filterPlaceholder="All Types"
+      />
+
       {/* Grid of assessments */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {assessments.map((a) => {
-          const isDone = checkedIds.includes(a.id);
-          const daysLeft = getDaysRemaining(a.dueDate);
-          const isOverdue = daysLeft === "Overdue";
+      {filteredAssessments.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {filteredAssessments.map((a) => {
+            const isDone = checkedIds.includes(a.id);
+            const daysLeft = getDaysRemaining(a.dueDate);
+            const isOverdue = daysLeft === "Overdue";
 
-          return (
-            <Card
-              key={a.id}
-              className={cn(
-                "rounded-xl border shadow-none transition-all",
-                isDone
-                  ? "border-green-200 bg-green-50/5 opacity-75"
-                  : isOverdue
-                  ? "border-red-200 bg-red-50/5"
-                  : "border-border hover:border-[#2459c8]/20 bg-white"
-              )}
-            >
-              <CardContent className="p-6 space-y-4">
-                {/* Meta details */}
-                <div className="flex items-center justify-between gap-3">
-                  <span
-                    className={cn(
-                      "text-[9px] font-bold px-2 py-0.5 rounded-full tracking-wider",
-                      a.type === "ASSIGNMENT" && "bg-blue-100 text-blue-700",
-                      a.type === "QUIZ" && "bg-purple-100 text-purple-700",
-                      a.type === "EXAM" && "bg-red-100 text-red-700",
-                      a.type === "LAB" && "bg-amber-100 text-amber-700"
-                    )}
-                  >
-                    {a.type}
-                  </span>
-
-                  <span
-                    className={cn(
-                      "text-[10px] font-bold px-2 py-0.5 rounded-full",
-                      isDone
-                        ? "bg-green-100 text-green-700"
-                        : isOverdue
-                        ? "bg-red-100 text-red-700 animate-pulse"
-                        : "bg-muted text-muted-foreground"
-                    )}
-                  >
-                    {isDone ? "Done" : daysLeft}
-                  </span>
-                </div>
-
-                {/* Title / Info */}
-                <div className="flex items-start gap-3">
-                  {/* Mark done checkbox for student */}
-                  {!isCR && (
-                    <button
-                      onClick={() => toggleCheck(a.id)}
-                      className="text-muted-foreground hover:text-[#2459c8] mt-1 transition-colors shrink-0 cursor-pointer"
-                      aria-label="Toggle completion status"
-                    >
-                      {isDone ? (
-                        <CheckSquare className="size-5 text-green-600 fill-green-50/50" />
-                      ) : (
-                        <Square className="size-5" />
-                      )}
-                    </button>
-                  )}
-
-                  <div className="space-y-1">
-                    <h4
-                      className={cn(
-                        "text-base font-bold text-foreground leading-snug",
-                        isDone && "line-through text-muted-foreground"
-                      )}
-                    >
-                      {a.title}
-                    </h4>
-                    <p className="text-xs font-semibold text-[#2459c8]">{a.subject}</p>
-                  </div>
-                </div>
-
-                {/* Description */}
-                {a.description && (
-                  <p className="text-xs text-muted-foreground leading-relaxed pl-0 sm:pl-8">
-                    {a.description}
-                  </p>
-                )}
-
-                {/* Footer timings */}
-                <div className="flex items-center justify-between gap-4 pt-3 border-t border-muted/60 pl-0 sm:pl-8">
-                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                    <Calendar className="size-3.5" />
-                    <span>Due: {a.dueDate}</span>
-                    <Clock className="size-3.5 ml-1.5" />
-                    <span>{a.dueTime}</span>
-                  </div>
-
-                  {isCR && (
-                    <button
-                      onClick={() => handleDelete(a.id)}
-                      className="text-muted-foreground hover:text-red-600 transition-colors p-1.5 rounded-lg cursor-pointer hover:bg-red-50"
-                      aria-label="Remove assessment"
-                    >
-                      <Trash2 className="size-4" />
-                    </button>
-                  )}
-                </div>
-              </CardContent>
-            </Card>
-          );
-        })}
-
-        {assessments.length === 0 && (
-          <div className="text-center py-16 border border-dashed border-border rounded-xl bg-white col-span-2">
-            <ClipboardList className="size-8 text-muted-foreground mx-auto mb-2" />
-            <p className="text-sm font-semibold text-foreground">No assessments listed</p>
-            <p className="text-xs text-muted-foreground mt-1">There are no assignments, quizzes, or exams scheduled.</p>
-          </div>
-        )}
-      </div>
+            return (
+              <AssessmentCard
+                key={a.id}
+                assessment={a}
+                isCR={isCR}
+                isDone={isDone}
+                isOverdue={isOverdue}
+                daysLeft={daysLeft}
+                onToggleCheck={() => toggleCheck(a.id)}
+                onDelete={() => setDeletingId(a.id)}
+              />
+            );
+          })}
+        </div>
+      ) : (
+        <div className="text-center py-16 border border-dashed border-border rounded-xl bg-white col-span-2">
+          <ClipboardList className="size-8 text-muted-foreground mx-auto mb-2" />
+          <p className="text-sm font-semibold text-foreground">No assessments found</p>
+          <p className="text-xs text-muted-foreground mt-1">Try matching another query or assessment type filter.</p>
+        </div>
+      )}
 
       {/* Add Assessment Dialog */}
-      <Dialog open={isAddOpen} onOpenChange={(o) => {
-        setIsAddOpen(o);
-        if (!o) form.reset();
-      }}>
-        <DialogContent className="bg-white max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle className="font-[family-name:var(--font-besley)]">Create Sessional Assessment</DialogTitle>
-            <DialogDescription>
-              Assign new tasks, quizzes, or exams with deadlines.
-            </DialogDescription>
-          </DialogHeader>
+      <AssessmentDialog
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onSubmit={onSubmit}
+      />
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Assessment Title</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="e.g. Lab Project submission" aria-invalid={!!fieldState.error} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="subject"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Course / Subject</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="e.g. CSE-301 (DBMS)" aria-invalid={!!fieldState.error} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="type"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Assessment Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger className="h-10 w-full">
-                          <SelectValue placeholder="Select type" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="ASSIGNMENT">Assignment</SelectItem>
-                        <SelectItem value="QUIZ">Quiz / MCQ Test</SelectItem>
-                        <SelectItem value="EXAM">Midterm / Exam</SelectItem>
-                        <SelectItem value="LAB">Lab Sessional Task</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="dueDate"
-                  render={({ field, fieldState }) => (
-                    <FormItem>
-                      <FormLabel>Deadline Date</FormLabel>
-                      <FormControl>
-                        <Input {...field} type="date" aria-invalid={!!fieldState.error} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="dueTime"
-                  render={({ field, fieldState }) => (
-                    <FormItem>
-                      <FormLabel>Deadline Time</FormLabel>
-                      <FormControl>
-                        <Input {...field} type="time" aria-invalid={!!fieldState.error} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Instructions (Optional)</FormLabel>
-                    <FormControl>
-                      <Textarea {...field} rows={3} placeholder="Syllabus chapters or reference submission guidelines..." aria-invalid={!!fieldState.error} className="resize-none" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <DialogFooter className="pt-2">
-                <Button type="button" variant="outline" onClick={() => setIsAddOpen(false)} className="cursor-pointer">
-                  Cancel
-                </Button>
-                <Button type="submit" className="bg-[#2459c8] text-white cursor-pointer">
-                  Save Deadline
-                </Button>
-              </DialogFooter>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+      {/* Delete Confirmation Dialog */}
+      <DeleteConfirmDialog
+        isOpen={deletingId !== null}
+        onClose={() => setDeletingId(null)}
+        onConfirm={confirmDelete}
+        title="Remove Assessment"
+        description="Are you sure you want to remove this assessment? This will permanently delete the deadline from the class tracker."
+      />
     </div>
   );
 }

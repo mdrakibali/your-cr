@@ -5,10 +5,6 @@ import { Bell, Trash2, Calendar, ClipboardList, Megaphone, CheckCircle2 } from "
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface NotificationsListProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_NOTIFICATIONS = [
   {
     id: "1",
@@ -36,7 +32,10 @@ const INITIAL_NOTIFICATIONS = [
   },
 ];
 
-export default function NotificationsList({ role }: NotificationsListProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function NotificationsList() {
+  const { role } = useDashboard();
   const [notifications, setNotifications] = useState(INITIAL_NOTIFICATIONS);
 
   const handleMarkAllRead = () => {

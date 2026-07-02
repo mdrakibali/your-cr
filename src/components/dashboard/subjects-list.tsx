@@ -9,10 +9,6 @@ import SubjectCard from "./subjects/subject-card";
 import SubjectDialog from "./subjects/subject-dialog";
 import { type SubjectFormData } from "@/validation/dashboard";
 
-interface SubjectsListProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_SUBJECTS = [
   {
     id: "1",
@@ -37,7 +33,10 @@ const INITIAL_SUBJECTS = [
   },
 ];
 
-export default function SubjectsList({ role }: SubjectsListProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function SubjectsList() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [subjects, setSubjects] = useState(INITIAL_SUBJECTS);
   const [searchValue, setSearchValue] = useState("");

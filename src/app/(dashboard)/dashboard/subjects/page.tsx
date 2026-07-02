@@ -1,13 +1,11 @@
 import SubjectsList from "@/components/dashboard/subjects-list";
-import { getDashboardRole } from "@/lib/auth-helper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Course Subjects",
-  description: "Curriculum subjects registered in the current term",
+  title: "Semester Subjects",
+  description: "Semester course list and credit hours overview",
 };
 
-export default async function SubjectsPage() {
-  const role = await getDashboardRole();
-  return <SubjectsList role={role} />;
+export default function SubjectsPage() {
+  return <SubjectsList />;
 }

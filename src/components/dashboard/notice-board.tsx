@@ -9,10 +9,6 @@ import NoticeCard from "./notice/notice-card";
 import NoticeDialog from "./notice/notice-dialog";
 import { type NoticeFormData } from "@/validation/dashboard";
 
-interface NoticeBoardProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_NOTICES = [
   {
     id: "1",
@@ -50,7 +46,10 @@ const FILTER_OPTIONS = [
   { label: "Normal", value: "NORMAL" },
 ];
 
-export default function NoticeBoard({ role }: NoticeBoardProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function NoticeBoard() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [notices, setNotices] = useState(INITIAL_NOTICES);
   const [searchValue, setSearchValue] = useState("");

@@ -9,16 +9,12 @@ import AssessmentCard from "./assessments/assessment-card";
 import AssessmentDialog from "./assessments/assessment-dialog";
 import { type AssessmentFormData } from "@/validation/dashboard";
 
-interface AssessmentsListProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_ASSESSMENTS = [
   {
     id: "1",
     title: "Database Sessional Group Project",
     subject: "CSE-301 (DBMS)",
-    type: "ASSIGNMENT", // ASSIGNMENT, QUIZ, EXAM, LAB
+    type: "ASSIGNMENT",
     dueDate: "2026-07-15",
     dueTime: "23:59",
     description: "Submit sessional database schema diagram and normalization design document via drive.",
@@ -51,7 +47,10 @@ const FILTER_OPTIONS = [
   { label: "Labs", value: "LAB" },
 ];
 
-export default function AssessmentsList({ role }: AssessmentsListProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function AssessmentsList() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [assessments, setAssessments] = useState(INITIAL_ASSESSMENTS);
   const [searchValue, setSearchValue] = useState("");

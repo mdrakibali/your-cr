@@ -1,5 +1,4 @@
 import ProfileForm from "@/components/dashboard/profile-form";
-import { getDashboardRole } from "@/lib/auth-helper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +6,6 @@ export const metadata: Metadata = {
   description: "Manage your account settings and contact details",
 };
 
-export default async function ProfilePage() {
-  const role = await getDashboardRole();
-  return <ProfileForm role={role} />;
+export default function ProfilePage() {
+  return <ProfileForm />;
 }

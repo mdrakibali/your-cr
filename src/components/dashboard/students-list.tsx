@@ -8,10 +8,6 @@ import StudentCard from "./students/student-card";
 import StudentDialog from "./students/student-dialog";
 import { type StudentInviteFormData } from "@/validation/dashboard";
 
-interface StudentsListProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_STUDENTS = [
   {
     id: "1",
@@ -19,7 +15,7 @@ const INITIAL_STUDENTS = [
     roll: "CSE-05201024",
     email: "rakib.cse@university.edu",
     phone: "+880 1711-223344",
-    status: "ACTIVE", // ACTIVE or INVITED
+    status: "ACTIVE",
   },
   {
     id: "2",
@@ -45,7 +41,10 @@ const FILTER_OPTIONS = [
   { label: "Invited", value: "INVITED" },
 ];
 
-export default function StudentsList({ role }: StudentsListProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function StudentsList() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [students, setStudents] = useState(INITIAL_STUDENTS);
   

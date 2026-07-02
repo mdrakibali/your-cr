@@ -8,10 +8,6 @@ import RoutineSlotCard from "./routine/routine-slot-card";
 import RescheduleDialog from "./routine/reschedule-dialog";
 import { cn } from "@/lib/utils";
 
-interface RoutineViewProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_CLASSES = [
   // Monday
   { id: "m1", day: "Monday", code: "CSE-301", title: "DBMS", time: "09:00 AM - 10:30 AM", room: "Room 402", teacher: "Dr. Abu Sayeed", status: "ACTIVE" },
@@ -28,7 +24,10 @@ const INITIAL_CLASSES = [
 
 const DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
-export default function RoutineView({ role }: RoutineViewProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function RoutineView() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [classes, setClasses] = useState(INITIAL_CLASSES);
   const [activeDay, setActiveDay] = useState("Monday");

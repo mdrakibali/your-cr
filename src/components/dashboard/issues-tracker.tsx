@@ -9,17 +9,13 @@ import IssueCard from "./issues/issue-card";
 import IssueDialog from "./issues/issue-dialog";
 import { type IssueFormData } from "@/validation/dashboard";
 
-interface IssuesTrackerProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_ISSUES = [
   {
     id: "1",
     title: "Routine Clash: DBMS Sessional and Compiler Lab",
     description: "The Monday DBMS sessional at 12:30 PM is clashing with the rescheduled Compiler lab. We need to shift DBMS sessional.",
     category: "Routine Conflict",
-    status: "PENDING", // PENDING, IN_PROGRESS, RESOLVED
+    status: "PENDING",
     reporter: "Afsana Mimi",
     date: "July 1, 2026",
   },
@@ -41,7 +37,10 @@ const FILTER_OPTIONS = [
   { label: "Resolved", value: "RESOLVED" },
 ];
 
-export default function IssuesTracker({ role }: IssuesTrackerProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function IssuesTracker() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [issues, setIssues] = useState(INITIAL_ISSUES);
   

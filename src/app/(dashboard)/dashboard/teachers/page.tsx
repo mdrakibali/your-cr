@@ -1,5 +1,4 @@
 import TeachersList from "@/components/dashboard/teachers-list";
-import { getDashboardRole } from "@/lib/auth-helper";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -7,7 +6,6 @@ export const metadata: Metadata = {
   description: "Directory of class instructors and professors",
 };
 
-export default async function TeachersPage() {
-  const role = await getDashboardRole();
-  return <TeachersList role={role} />;
+export default function TeachersPage() {
+  return <TeachersList />;
 }

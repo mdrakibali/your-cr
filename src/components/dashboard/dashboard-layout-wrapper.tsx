@@ -1,9 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, createContext, useContext } from "react";
 import Sidebar from "@/components/common/sidebar";
 import MobileSidebar from "@/components/common/mobile-sidebar";
 import DashboardHeader from "@/components/common/dashboard-header";
+
+interface DashboardContextType {
+  role: "CR" | "STUDENT";
+}
+
+const DashboardContext = createContext<DashboardContextType>({ role: "STUDENT" });
+
+export const useDashboard = () => useContext(DashboardContext);
 
 interface DashboardLayoutWrapperProps {
   role: "CR" | "STUDENT";
@@ -17,33 +25,35 @@ export default function DashboardLayoutWrapper({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50 text-foreground">
-      {/* Desktop Sidebar (hidden on mobile, visible on lg) */}
-      <Sidebar role={role} className="hidden lg:flex shrink-0 h-full" />
+    <DashboardContext.Provider value={{ role }}>
+      <div className="flex h-screen overflow-hidden bg-gray-50 text-foreground">
+        {/* Desktop Sidebar (hidden on mobile, visible on lg) */}
+        <Sidebar role={role} className="hidden lg:flex shrink-0 h-full" />
 
-      {/* Mobile Drawer Sidebar */}
-      <MobileSidebar
-        role={role}
-        isOpen={mobileMenuOpen}
-        onClose={() => setMobileMenuOpen(false)}
-      />
-
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
-        {/* Header */}
-        <DashboardHeader
+        {/* Mobile Drawer Sidebar */}
+        <MobileSidebar
           role={role}
-          onMenuClick={() => setMobileMenuOpen(true)}
+          isOpen={mobileMenuOpen}
+          onClose={() => setMobileMenuOpen(false)}
         />
 
-        {/* Dynamic Page Scroll Content */}
-        <main className="flex-1 overflow-y-auto focus:outline-none">
-          {/* Dashboard Outer Container following max-width rules */}
-          <div className="max-w-[1440px] mx-auto w-full px-4 py-6 sm:px-12 sm:py-8 md:px-24 md:py-10">
-            {children}
-          </div>
-        </main>
+        {/* Main Content Area */}
+        <div className="flex-1 flex flex-col h-full overflow-hidden">
+          {/* Header */}
+          <DashboardHeader
+            role={role}
+            onMenuClick={() => setMobileMenuOpen(true)}
+          />
+
+          {/* Dynamic Page Scroll Content */}
+          <main className="flex-1 overflow-y-auto focus:outline-none">
+            {/* Dashboard Outer Container following max-width rules */}
+            <div className="max-w-[1440px] mx-auto w-full px-4 py-6 sm:px-12 sm:py-8 md:px-24 md:py-10">
+              {children}
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
+    </DashboardContext.Provider>
   );
 }

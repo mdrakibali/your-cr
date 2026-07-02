@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,9 +19,7 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 
-interface ClassesViewProps {
-  role: "CR" | "STUDENT";
-}
+import { useDashboard } from "./dashboard-layout-wrapper";
 
 const classParamsSchema = z.object({
   department: z.string().min(1, "Department is required"),
@@ -34,7 +31,8 @@ const classParamsSchema = z.object({
 
 type ClassParamsFormData = z.infer<typeof classParamsSchema>;
 
-export default function ClassesView({ role }: ClassesViewProps) {
+export default function ClassesView() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
 
   const form = useForm<ClassParamsFormData>({

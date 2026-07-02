@@ -9,10 +9,6 @@ import TeacherCard from "./teachers/teacher-card";
 import TeacherDialog from "./teachers/teacher-dialog";
 import { type TeacherFormData } from "@/validation/dashboard";
 
-interface TeachersListProps {
-  role: "CR" | "STUDENT";
-}
-
 const INITIAL_TEACHERS = [
   {
     id: "1",
@@ -40,7 +36,10 @@ const INITIAL_TEACHERS = [
   },
 ];
 
-export default function TeachersList({ role }: TeachersListProps) {
+import { useDashboard } from "./dashboard-layout-wrapper";
+
+export default function TeachersList() {
+  const { role } = useDashboard();
   const isCR = role === "CR";
   const [teachers, setTeachers] = useState(INITIAL_TEACHERS);
   const [searchValue, setSearchValue] = useState("");

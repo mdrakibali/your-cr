@@ -7,7 +7,6 @@ import { z } from "zod";
 import { User, Mail, Phone, Lock, Save, Upload, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   Form,
@@ -20,9 +19,7 @@ import {
 } from "@/components/ui/form";
 import { toast } from "sonner";
 
-interface ProfileFormProps {
-  role: "CR" | "STUDENT";
-}
+import { useDashboard } from "./dashboard-layout-wrapper";
 
 const profileSchema = z.object({
   name: z.string().min(1, "Name is required").min(2, "Name must be at least 2 characters"),
@@ -34,7 +31,8 @@ const profileSchema = z.object({
 
 type ProfileFormData = z.infer<typeof profileSchema>;
 
-export default function ProfileForm({ role }: ProfileFormProps) {
+export default function ProfileForm() {
+  const { role } = useDashboard();
   const [imagePreview, setImagePreview] = useState<string>("");
 
   const form = useForm<ProfileFormData>({

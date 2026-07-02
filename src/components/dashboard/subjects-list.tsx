@@ -1,29 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Plus, BookOpen, Edit, Trash2 } from "lucide-react";
+import { Plus, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-  DialogFooter,
-} from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { subjectSchema, type SubjectFormData } from "@/validation/dashboard";
+import SearchFilterBar from "./search-filter-bar";
+import DeleteConfirmDialog from "./delete-confirm-dialog";
+import SubjectCard from "./subjects/subject-card";
+import SubjectDialog from "./subjects/subject-dialog";
+import { type SubjectFormData } from "@/validation/dashboard";
 
 interface SubjectsListProps {
   role: "CR" | "STUDENT";
@@ -56,25 +40,22 @@ const INITIAL_SUBJECTS = [
 export default function SubjectsList({ role }: SubjectsListProps) {
   const isCR = role === "CR";
   const [subjects, setSubjects] = useState(INITIAL_SUBJECTS);
-  const [isAddOpen, setIsAddOpen] = useState(false);
-  const [editingSubject, setEditingSubject] = useState<SubjectFormData & { id: string } | null>(null);
+  const [searchValue, setSearchValue] = useState("");
 
-  const form = useForm<SubjectFormData>({
-    resolver: zodResolver(subjectSchema),
-    shouldFocusError: true,
-    defaultValues: { code: "", title: "", credits: "", teacher: "" },
-  });
+  // Modals state
+  const [isAddOpen, setIsAddOpen] = useState(false);
+  const [editingSubject, setEditingSubject] = useState<any | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const onAddSubmit = (data: SubjectFormData) => {
     setSubjects([
       ...subjects,
       {
-        id: String(subjects.length + 1),
+        id: String(Date.now()),
         ...data,
       },
     ]);
     setIsAddOpen(false);
-    form.reset();
   };
 
   const onEditSubmit = (data: SubjectFormData) => {
@@ -85,11 +66,22 @@ export default function SubjectsList({ role }: SubjectsListProps) {
     setEditingSubject(null);
   };
 
-  const handleDelete = (id: string) => {
-    if (confirm("Are you sure you want to delete this subject?")) {
-      setSubjects(subjects.filter((s) => s.id !== id));
-    }
+  const confirmDelete = () => {
+    if (!deletingId) return;
+    setSubjects(subjects.filter((s) => s.id !== deletingId));
+    setDeletingId(null);
   };
+
+  // Client-side filtering logic
+  const filteredSubjects = subjects.filter((s) => {
+    const query = searchValue.toLowerCase().trim();
+    if (!query) return true;
+    return (
+      s.title.toLowerCase().includes(query) ||
+      s.code.toLowerCase().includes(query) ||
+      s.teacher.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <div className="space-y-6">
@@ -113,230 +105,61 @@ export default function SubjectsList({ role }: SubjectsListProps) {
         )}
       </div>
 
-      {/* Grid structure (Responsive) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {subjects.map((subject) => (
-          <div
-            key={subject.id}
-            className="bg-white border border-border rounded-xl p-5 flex flex-col justify-between hover:border-[#2459c8]/30 transition-colors"
-          >
-            <div className="space-y-3">
-              <div className="flex items-center justify-between gap-2">
-                <span className="text-xs font-bold text-[#2459c8] bg-primary/10 px-2 py-0.5 rounded-full">
-                  {subject.code}
-                </span>
-                <span className="text-xs text-muted-foreground font-semibold">
-                  {subject.credits} Credits
-                </span>
-              </div>
+      {/* Search Bar */}
+      <SearchFilterBar
+        searchValue={searchValue}
+        onSearchChange={setSearchValue}
+        searchPlaceholder="Search curriculum by subject title, code, or instructor name..."
+      />
 
-              <div>
-                <h4 className="font-semibold text-foreground text-sm line-clamp-1">
-                  {subject.title}
-                </h4>
-                <p className="text-xs text-muted-foreground mt-1">
-                  Instructor: <span className="font-medium text-foreground">{subject.teacher}</span>
-                </p>
-              </div>
-            </div>
-
-            {isCR && (
-              <div className="flex justify-end gap-2 mt-5 pt-3 border-t border-muted/60">
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  onClick={() => {
-                    setEditingSubject(subject);
-                    form.reset(subject);
-                  }}
-                  className="text-muted-foreground hover:text-foreground cursor-pointer"
-                >
-                  <Edit className="size-4" />
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="icon-sm"
-                  onClick={() => handleDelete(subject.id)}
-                  className="text-red-500 hover:text-red-700 hover:bg-red-50 cursor-pointer"
-                >
-                  <Trash2 className="size-4" />
-                </Button>
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+      {/* Grid of subjects */}
+      {filteredSubjects.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredSubjects.map((subject) => (
+            <SubjectCard
+              key={subject.id}
+              subject={subject}
+              isCR={isCR}
+              onEdit={() => setEditingSubject(subject)}
+              onDelete={() => setDeletingId(subject.id)}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="text-center py-12 border border-dashed border-border rounded-xl bg-white">
+          <BookOpen className="size-8 text-muted-foreground mx-auto mb-2" />
+          <p className="text-sm font-semibold text-foreground">No subjects found</p>
+          <p className="text-xs text-muted-foreground mt-1">Try matching another query search term.</p>
+        </div>
+      )}
 
       {/* Add Subject Dialog */}
-      <Dialog open={isAddOpen} onOpenChange={(o) => {
-        setIsAddOpen(o);
-        if (!o) form.reset();
-      }}>
-        <DialogContent className="bg-white max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle className="font-[family-name:var(--font-besley)]">Add New Subject</DialogTitle>
-            <DialogDescription>
-              Add a new course curriculum code and assign an instructor to it.
-            </DialogDescription>
-          </DialogHeader>
-
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onAddSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="code"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Subject Code</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="e.g. CSE-303" aria-invalid={!!fieldState.error} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Subject Title</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="e.g. Software Engineering" aria-invalid={!!fieldState.error} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="credits"
-                  render={({ field, fieldState }) => (
-                    <FormItem>
-                      <FormLabel>Credit Hours</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="e.g. 3.0 or 1.5" aria-invalid={!!fieldState.error} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="teacher"
-                  render={({ field, fieldState }) => (
-                    <FormItem>
-                      <FormLabel>Assigned Instructor</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="e.g. Kamrul Hasan" aria-invalid={!!fieldState.error} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <DialogFooter className="pt-2">
-                <Button type="button" variant="outline" onClick={() => setIsAddOpen(false)} className="cursor-pointer">
-                  Cancel
-                </Button>
-                <Button type="submit" className="bg-[#2459c8] text-white cursor-pointer">
-                  Save Subject
-                </Button>
-              </DialogFooter>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+      <SubjectDialog
+        isOpen={isAddOpen}
+        onClose={() => setIsAddOpen(false)}
+        onSubmit={onAddSubmit}
+        title="Add New Subject"
+        description="Add a new course curriculum code and assign an instructor to it."
+      />
 
       {/* Edit Subject Dialog */}
-      <Dialog open={editingSubject !== null} onOpenChange={(o) => {
-        if (!o) setEditingSubject(null);
-      }}>
-        <DialogContent className="bg-white max-w-[500px]">
-          <DialogHeader>
-            <DialogTitle className="font-[family-name:var(--font-besley)]">Edit Subject</DialogTitle>
-            <DialogDescription>
-              Update course curriculum settings or change the assigned teacher.
-            </DialogDescription>
-          </DialogHeader>
+      <SubjectDialog
+        isOpen={editingSubject !== null}
+        onClose={() => setEditingSubject(null)}
+        onSubmit={onEditSubmit}
+        title="Edit Subject"
+        description="Update course curriculum settings or change the assigned teacher."
+        defaultValues={editingSubject}
+      />
 
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onEditSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="code"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Subject Code</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="e.g. CSE-303" aria-invalid={!!fieldState.error} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field, fieldState }) => (
-                  <FormItem>
-                    <FormLabel>Subject Title</FormLabel>
-                    <FormControl>
-                      <Input {...field} placeholder="e.g. Software Engineering" aria-invalid={!!fieldState.error} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <FormField
-                  control={form.control}
-                  name="credits"
-                  render={({ field, fieldState }) => (
-                    <FormItem>
-                      <FormLabel>Credit Hours</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="e.g. 3.0 or 1.5" aria-invalid={!!fieldState.error} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="teacher"
-                  render={({ field, fieldState }) => (
-                    <FormItem>
-                      <FormLabel>Assigned Instructor</FormLabel>
-                      <FormControl>
-                        <Input {...field} placeholder="e.g. Kamrul Hasan" aria-invalid={!!fieldState.error} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <DialogFooter className="pt-2">
-                <Button type="button" variant="outline" onClick={() => setEditingSubject(null)} className="cursor-pointer">
-                  Cancel
-                </Button>
-                <Button type="submit" className="bg-[#2459c8] text-white cursor-pointer">
-                  Save Changes
-                </Button>
-              </DialogFooter>
-            </form>
-          </Form>
-        </DialogContent>
-      </Dialog>
+      {/* Delete Confirmation Dialog */}
+      <DeleteConfirmDialog
+        isOpen={deletingId !== null}
+        onClose={() => setDeletingId(null)}
+        onConfirm={confirmDelete}
+        title="Delete Subject"
+        description="Are you sure you want to delete this subject? This will remove the course curriculum details from the classes listing."
+      />
     </div>
   );
 }

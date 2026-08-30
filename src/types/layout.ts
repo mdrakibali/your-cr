@@ -1,10 +1,10 @@
 import React from "react";
 import { Role } from "@/types/navigation";
 
-// Main marketing layout props including parallel auth modal slot
+// Main marketing layout props including parallel authModal slot
 export interface MainLayoutProps {
   children: React.ReactNode;
-  auth?: React.ReactNode;
+  authModal?: React.ReactNode;
 }
 
 // Dashboard context type

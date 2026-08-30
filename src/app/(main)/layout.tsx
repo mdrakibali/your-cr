@@ -3,17 +3,17 @@ import { Navbar } from "@/components/common/navbar";
 import { Footer } from "@/components/common/footer";
 import { MainLayoutProps } from "@/types/layout";
 
-// Layout wrapper for landing, marketing pages, and parallel auth modal slot
+// Layout wrapper for landing, marketing pages, and parallel authModal slot
 export default function MainLayout({
   children,
-  auth,
+  authModal,
 }: MainLayoutProps): React.JSX.Element {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-1">{children}</main>
       <Footer />
-      {auth}
+      {authModal}
     </div>
   );
 }

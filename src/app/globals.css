@@ -145,11 +145,13 @@
 }
 
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
   * {
-    @apply border-border outline-ring/50;
-    scrollbar-width: thin;
-    scrollbar-color: color-mix(in srgb, var(--primary) 35%, transparent)
-      transparent;
+    @apply border-border;
   }
   body {
     color: var(--foreground);
@@ -157,40 +159,259 @@
     -moz-osx-font-smoothing: grayscale;
     background: #fff;
     line-height: 1.6;
+    margin: 0;
   }
   html {
     @apply font-sans;
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
   }
   h1,
   h2,
   h3 {
     font-family: var(--font-besley), serif;
   }
+}
 
-  /* Custom Webkit scrollbar */
-  ::-webkit-scrollbar {
-    width: 2.5px;
-    height: 2.5px;
-  }
+/* Universal Custom Webkit scrollbar */
+*::-webkit-scrollbar,
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+}
 
-  ::-webkit-scrollbar-button {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-  }
+*::-webkit-scrollbar-button,
+::-webkit-scrollbar-button {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
 
-  ::-webkit-scrollbar-track {
-    background: transparent;
-  }
+*::-webkit-scrollbar-track,
+::-webkit-scrollbar-track {
+  background: transparent;
+}
 
-  ::-webkit-scrollbar-thumb {
-    background: var(--border);
-    border-radius: 9999px;
-  }
+*::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
+}
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: var(--muted-foreground);
+*::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
   }
+}
+
+/* ==========================================================
+   Dropdown Animations
+   ========================================================== */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: var(--dropdown-transform, translate(0, 0)) translateY(-8px)
+      scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: var(--dropdown-transform, translate(0, 0)) translateY(0) scale(1);
+  }
+}
+
+@keyframes dropdownFadeOut {
+  from {
+    opacity: 1;
+    transform: var(--dropdown-transform, translate(0, 0)) translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: var(--dropdown-transform, translate(0, 0)) translateY(-8px)
+      scale(0.95);
+  }
+}
+
+@utility animate-dropdown {
+  animation: dropdownFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: top right;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+@utility animate-dropdown-out {
+  animation: dropdownFadeOut 0.15s ease-in forwards;
+  transform-origin: top right;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================
+   Modal Animations
+   ========================================================== */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes modalScaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@utility animate-modal-backdrop {
+  animation: modalFadeIn 0.2s ease-out forwards;
+}
+
+@utility animate-modal-backdrop-out {
+  animation: modalFadeOut 0.2s ease-in forwards;
+}
+
+@utility animate-modal-content {
+  animation: modalScaleIn 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+@utility animate-modal-content-out {
+  animation: modalScaleOut 0.2s ease-in forwards;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+/* ==========================================================
+   Sheet Animations
+   ========================================================== */
+@keyframes sheetSlideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes sheetSlideOutRight {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes sheetSlideInLeft {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes sheetSlideOutLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes sheetSlideInTop {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes sheetSlideOutTop {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes sheetSlideInBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes sheetSlideOutBottom {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+@utility animate-sheet-in-right {
+  animation: sheetSlideInRight 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@utility animate-sheet-out-right {
+  animation: sheetSlideOutRight 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-sheet-in-left {
+  animation: sheetSlideInLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@utility animate-sheet-out-left {
+  animation: sheetSlideOutLeft 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-sheet-in-top {
+  animation: sheetSlideInTop 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@utility animate-sheet-out-top {
+  animation: sheetSlideOutTop 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@utility animate-sheet-in-bottom {
+  animation: sheetSlideInBottom 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+@utility animate-sheet-out-bottom {
+  animation: sheetSlideOutBottom 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

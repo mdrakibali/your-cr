@@ -35,25 +35,25 @@ export default function LoginForm() {
   return (
     <div className="w-full">
       <Card className="w-full border-none shadow-none bg-transparent">
-        <CardContent className="p-5 xs:p-6 sm:p-7">
+        <CardContent className="p-4 sm:p-6">
           {/* Logo */}
-          <div className="mb-7 flex justify-center">
+          <div className="mb-4 flex justify-center">
             <Logo />
           </div>
 
           {/* Header */}
-          <div className="mb-8">
-            <h1 className="text-2xl font-medium text-foreground mb-1.5 font-[family-name:var(--font-besley)]">
+          <div className="mb-5 text-center sm:text-left">
+            <h1 className="text-xl sm:text-2xl font-medium text-foreground mb-1 font-[family-name:var(--font-besley)]">
               Welcome back
             </h1>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Sign in to your CR account to continue
             </p>
           </div>
 
           {/* Form */}
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
               {/* Email */}
               <FormField
                 control={form.control}
@@ -159,7 +159,7 @@ export default function LoginForm() {
           </Form>
 
           {/* Divider */}
-          <div className="relative my-6">
+          <div className="relative my-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-border" />
             </div>
@@ -171,13 +171,13 @@ export default function LoginForm() {
           </div>
 
           {/* Register link */}
-          <div className="text-center border border-border rounded-xl py-4 px-5">
-            <p className="text-sm text-muted-foreground">
+          <div className="text-center border border-border rounded-xl py-2.5 px-4 bg-gray-50/50">
+            <p className="text-xs sm:text-sm text-muted-foreground">
               Want to join as a Class Representative?
             </p>
             <Link
               href="/register"
-              className="inline-flex items-center gap-1.5 text-[#2459c8] text-sm font-semibold mt-1"
+              className="inline-flex items-center gap-1.5 text-[#2459c8] text-xs sm:text-sm font-semibold mt-0.5"
             >
               Register as CR <ArrowRight className="size-3.5" />
             </Link>
@@ -185,7 +185,7 @@ export default function LoginForm() {
         </CardContent>
       </Card>
 
-      <p className="text-center text-xs text-muted-foreground mt-5 leading-relaxed">
+      <p className="text-center text-[11px] text-muted-foreground mt-2.5 leading-relaxed">
         Only approved CRs can sign in to this portal.
       </p>
     </div>

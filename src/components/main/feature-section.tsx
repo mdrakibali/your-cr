@@ -9,8 +9,8 @@ import studentImg from "@/assets/features/student.png";
 
 export default function FeatureSection() {
   return (
-    <section id="features" className="py-20 bg-[#F8F8F8] scroll-mt-20">
-      <div className="container px-4 mx-auto max-w-6xl">
+    <section id="features" className="py-16 sm:py-20 bg-[#F8F8F8] scroll-mt-20">
+      <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <span className="text-xs font-semibold tracking-widest text-[#8c94a5] uppercase block mb-3">

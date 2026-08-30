@@ -29,8 +29,8 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
-      <div className="container px-4 mx-auto max-w-6xl">
+    <section className="py-16 sm:py-20 bg-white overflow-hidden">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Side: 2x2 Grid of Stat Cards */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-4 sm:gap-6 order-2 lg:order-1">

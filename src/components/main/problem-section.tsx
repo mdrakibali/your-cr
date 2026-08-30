@@ -67,10 +67,10 @@ export default function ProblemSection() {
   ];
 
   return (
-    <section className="py-20 bg-[#F8F8F8]">
-      <div className="container px-4 mx-auto max-w-6xl">
+    <section className="py-16 sm:py-20 bg-[#F8F8F8]">
+      <div className="container mx-auto">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
           <span className="text-xs font-semibold tracking-widest text-[#8c94a5] uppercase block mb-3">
             Sound familiar?
           </span>
@@ -81,7 +81,7 @@ export default function ProblemSection() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-10">
           {cards.map((card, idx) => (
             <ProblemCard key={idx} {...card} />
           ))}

@@ -7,8 +7,8 @@ import happyStudent from "@/assets/main/happy-student.png";
 
 export default function CoordinateSection() {
   return (
-    <section className="py-20 bg-white overflow-hidden">
-      <div className="container px-4 mx-auto max-w-6xl">
+    <section className="py-16 sm:py-20 bg-white overflow-hidden">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Content Side */}
           <div className="lg:col-span-6 text-left space-y-6">

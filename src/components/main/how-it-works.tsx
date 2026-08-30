@@ -211,8 +211,8 @@ export default function HowItWorks() {
   };
 
   return (
-    <section id="how-it-works" className="py-20 bg-gray-50/50 overflow-hidden scroll-mt-20">
-      <div className="container px-4 mx-auto max-w-6xl">
+    <section id="how-it-works" className="py-16 sm:py-20 bg-gray-50/50 overflow-hidden scroll-mt-20">
+      <div className="container mx-auto">
         {/* Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <h2 className="text-3xl md:text-4xl lg:text-[43px] font-medium text-gray-900 leading-tight">

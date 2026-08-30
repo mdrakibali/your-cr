@@ -38,8 +38,8 @@ export default function FaqSection() {
   };
 
   return (
-    <section id="faq" className="py-20 bg-white overflow-hidden scroll-mt-20">
-      <div className="container px-4 mx-auto max-w-6xl">
+    <section id="faq" className="py-16 sm:py-20 bg-white overflow-hidden scroll-mt-20">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Side: Header */}
           <div className="lg:col-span-5 text-left space-y-4 lg:sticky lg:top-24">

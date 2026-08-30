@@ -48,7 +48,7 @@ export default function DashboardLayoutWrapper({
           {/* Dynamic Page Scroll Content */}
           <main className="flex-1 overflow-y-auto focus:outline-none">
             {/* Dashboard Outer Container following max-width rules */}
-            <div className="max-w-[1440px] mx-auto w-full px-4 py-6 sm:px-12 sm:py-8 md:px-24 md:py-10">
+            <div className="max-w-[1440px] mx-auto w-full px-4 py-6 sm:px-6 sm:py-7 md:px-12 md:py-8 lg:px-16 xl:px-20 2xl:px-[100px] 2xl:py-10">
               {children}
             </div>
           </main>

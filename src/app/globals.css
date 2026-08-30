@@ -4,6 +4,11 @@
 
 @theme {
   --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
 }
 
 @theme inline {
@@ -86,24 +91,55 @@
 }
 
 @layer utilities {
-  .container {
+  .container,
+  .container-custom {
     width: 100%;
-    max-width: 1440px;
     margin-left: auto;
     margin-right: auto;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  @media (min-width: 480px) {
+    .container,
+    .container-custom {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+  }
+  @media (min-width: 640px) {
+    .container,
+    .container-custom {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
   }
   @media (min-width: 768px) {
-    .container {
-      padding-left: 48px;
-      padding-right: 48px;
+    .container,
+    .container-custom {
+      padding-left: 3rem;
+      padding-right: 3rem;
     }
   }
   @media (min-width: 1024px) {
-    .container {
-      padding-left: 100px;
-      padding-right: 100px;
+    .container,
+    .container-custom {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container,
+    .container-custom {
+      padding-left: 5rem;
+      padding-right: 5rem;
+    }
+  }
+  @media (min-width: 1440px) {
+    .container,
+    .container-custom {
+      max-width: 1440px;
+      padding-left: 6.25rem;
+      padding-right: 6.25rem;
     }
   }
 }

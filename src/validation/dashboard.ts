@@ -60,6 +60,8 @@ export const assessmentSchema = z.object({
   description: z.string().optional(),
 });
 
+export type AssessmentFormData = z.infer<typeof assessmentSchema>;
+
 export const routineSchema = z.object({
   code: z.string().min(1, "Course code is required"),
   title: z.string().min(1, "Course title is required"),

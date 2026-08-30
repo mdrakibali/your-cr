@@ -57,8 +57,8 @@ export default function UploadSection() {
   ];
 
   return (
-    <section className="py-20 bg-white overflow-hidden">
-      <div className="container px-4 mx-auto max-w-6xl text-center">
+    <section className="py-16 sm:py-20 bg-white overflow-hidden">
+      <div className="container mx-auto text-center">
         {/* Header */}
         <div className="max-w-3xl mx-auto">
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-gray-900 leading-tight">

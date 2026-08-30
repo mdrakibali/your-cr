@@ -75,8 +75,8 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section className="py-20 bg-[#f8f5fc] overflow-hidden border-y border-purple-100/30">
-      <div className="container px-4 mx-auto max-w-6xl text-center">
+    <section className="py-16 sm:py-20 bg-[#f8f5fc] overflow-hidden border-y border-purple-100/30">
+      <div className="container mx-auto text-center">
         {/* Header */}
         <div className="mb-12 max-w-3xl mx-auto space-y-4">
           <h2 className="font-besley text-2xl sm:text-3xl md:text-4xl lg:text-[40px] font-medium text-gray-900 leading-tight">

@@ -34,13 +34,13 @@ export default function TrustedUniversities() {
 
   return (
     <section className="py-12 bg-white overflow-hidden">
-      <div className="container px-4 mx-auto flex flex-col items-center">
+      <div className="container mx-auto flex flex-col items-center">
         <h2 className="text-xs font-semibold tracking-widest text-[#8c94a5] uppercase text-center mb-8">
           Trusted by Students at Top Universities
         </h2>
 
         {/* First Row of Universities */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center w-full max-w-5xl mb-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center w-full max-w-5xl 2xl:max-w-6xl mb-8">
           {row1.map((uni, idx) => (
             <div
               key={idx}
@@ -62,7 +62,7 @@ export default function TrustedUniversities() {
         </div>
 
         {/* Second Row of Universities */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center w-full max-w-5xl">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 sm:gap-8 items-center justify-items-center w-full max-w-5xl 2xl:max-w-6xl">
           {row2.map((uni, idx) => (
             <div
               key={idx}

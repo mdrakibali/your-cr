@@ -1,11 +1,12 @@
-import React from "react";
+import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import happyStudent from "@/assets/main/happy-student.png";
 
-export default function CoordinateSection() {
+// Coordinate feature spotlight with visual graphic and key value callouts
+export function CoordinateSection(): React.JSX.Element {
   return (
     <section className="py-12 sm:py-16 2xl:py-20 bg-white overflow-hidden">
       <div className="container mx-auto">
@@ -30,7 +31,7 @@ export default function CoordinateSection() {
             <div className="pt-1 sm:pt-2">
               <Link href="/login">
                 <Button className="h-10 sm:h-11 2xl:h-12 px-5 sm:px-6 2xl:px-8 text-xs sm:text-sm font-semibold 2xl:font-bold bg-primary text-white rounded-lg inline-flex items-center justify-center gap-2 hover:bg-primary/95 transition-colors cursor-pointer">
-                  Start Your Free Session <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                  Start Your Free Session <ArrowRight className="size-3.5 sm:size-4" />
                 </Button>
               </Link>
             </div>
@@ -49,17 +50,17 @@ export default function CoordinateSection() {
             </div>
 
             {/* Floating pill 1: Top-Left */}
-            <div className="absolute top-[10%] left-[2%] md:left-[5%] bg-white border border-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 shadow-[0_0_5px_0 rgba(0,0,0,0.05)]">
+            <div className="absolute top-[10%] left-[2%] md:left-[5%] bg-white border border-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 shadow-[0_0_5px_0_rgba(0,0,0,0.05)]">
               Available 24/7
             </div>
 
             {/* Floating pill 2: Bottom-Left */}
-            <div className="absolute bottom-[10%] left-[-2%] md:left-[0%] bg-white border border-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 shadow-[0_0_5px_0 rgba(0,0,0,0.05)]">
+            <div className="absolute bottom-[10%] left-[-2%] md:left-[0%] bg-white border border-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 shadow-[0_0_5px_0_rgba(0,0,0,0.05)]">
               Free for all students
             </div>
 
             {/* Floating pill 3: Bottom-Right */}
-            <div className="absolute bottom-[20%] right-[2%] md:right-[5%] bg-white border border-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 shadow-[0_0_5px_0 rgba(0,0,0,0.05)]">
+            <div className="absolute bottom-[20%] right-[2%] md:right-[5%] bg-white border border-gray-100 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[10px] sm:text-xs font-bold text-gray-700 shadow-[0_0_5px_0_rgba(0,0,0,0.05)]">
               Access anywhere, anytime
             </div>
           </div>

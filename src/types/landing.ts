@@ -51,6 +51,11 @@ export interface UploadItemProps {
   subtitle: string;
 }
 
+// Upload floating badge props
+export interface UploadFloatingBadgeProps extends UploadItemProps {
+  className?: string;
+}
+
 // How it works workflow step
 export interface HowItWorksStepProps {
   id: number;

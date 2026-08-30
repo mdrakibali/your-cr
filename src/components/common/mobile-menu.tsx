@@ -1,26 +1,17 @@
 "use client";
-import React from "react";
+
 import Link from "next/link";
+import React from "react";
 import { Button } from "@/components/ui/button";
+import { MobileMenuProps } from "@/types/navigation";
 
-interface NavigationItem {
-  name: string;
-  href: string;
-}
-
-interface MobileMenuProps {
-  isOpen: boolean;
-  onClose: () => void;
-  navigationItems: NavigationItem[];
-  pathname: string;
-}
-
-export default function MobileMenu({
+// Mobile navigation dropdown drawer
+export function MobileMenu({
   isOpen,
   onClose,
   navigationItems,
   pathname,
-}: MobileMenuProps) {
+}: MobileMenuProps): React.JSX.Element | null {
   if (!isOpen) return null;
 
   return (
@@ -41,7 +32,7 @@ export default function MobileMenu({
             </Link>
           );
         })}
-        {/* Mobile Action Buttons inside the drawer */}
+        {/* Mobile Action Buttons inside drawer */}
         <div className="flex flex-col gap-3 pt-2">
           <Link href="/login" onClick={onClose} className="w-full">
             <Button

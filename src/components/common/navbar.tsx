@@ -1,20 +1,15 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import Logo from "./logo";
-import MobileMenu from "./mobile-menu";
+import React, { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { NAVIGATION_ITEMS } from "@/lib/mock-data/landing";
+import { Logo } from "@/components/common/logo";
+import { MobileMenu } from "@/components/common/mobile-menu";
 
-const navigationItems = [
-  { name: "Home", href: "/" },
-  { name: "Features", href: "/#features" },
-  { name: "How It Works", href: "/#how-it-works" },
-  { name: "FAQ", href: "/#faq" },
-];
-
-export default function Navbar() {
+// Top navigation bar with desktop links and mobile drawer trigger
+export function Navbar(): React.JSX.Element {
   const pathname = usePathname();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -23,9 +18,10 @@ export default function Navbar() {
       <div className="container flex h-16 lg:h-18 2xl:h-20 items-center justify-between gap-3 sm:gap-4">
         {/* Logo */}
         <Logo />
+
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-6 2xl:gap-8">
-          {navigationItems.map((item) => {
+          {NAVIGATION_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
@@ -60,6 +56,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Button */}
         <button
+          type="button"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="flex items-center justify-center text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer md:hidden shrink-0"
           aria-label="Toggle menu"
@@ -76,7 +73,7 @@ export default function Navbar() {
       <MobileMenu
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        navigationItems={navigationItems}
+        navigationItems={NAVIGATION_ITEMS}
         pathname={pathname}
       />
     </header>

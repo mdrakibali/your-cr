@@ -37,3 +37,4 @@ export function StepInvitePreview(): React.JSX.Element {
     </div>
   );
 }
+

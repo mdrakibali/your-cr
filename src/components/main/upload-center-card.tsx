@@ -31,3 +31,4 @@ export function UploadCenterCard(): React.JSX.Element {
     </div>
   );
 }
+

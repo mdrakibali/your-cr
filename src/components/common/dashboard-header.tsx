@@ -1,8 +1,6 @@
 "use client";
-
 import { usePathname } from "next/navigation";
 import { Menu, Bell, User as UserIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { NAV_ITEMS } from "./sidebar";
 import Link from "next/link";
 

@@ -47,3 +47,4 @@ export function FacultyMockup(): React.JSX.Element {
     </div>
   );
 }
+

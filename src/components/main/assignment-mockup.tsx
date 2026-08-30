@@ -59,3 +59,4 @@ export function AssignmentMockup(): React.JSX.Element {
     </div>
   );
 }
+

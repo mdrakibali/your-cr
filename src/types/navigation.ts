@@ -11,3 +11,4 @@ export interface MobileMenuProps {
   navigationItems: NavigationItem[];
   pathname: string;
 }
+

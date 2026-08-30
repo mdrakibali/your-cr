@@ -226,3 +226,4 @@ export const FAQ_ITEMS: FaqItemProps[] = [
       "CRs post assignment titles, deadlines, guidelines, and submission links. Students receive countdown warnings as due dates approach.",
   },
 ];
+

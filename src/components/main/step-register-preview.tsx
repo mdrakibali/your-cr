@@ -35,3 +35,4 @@ export function StepRegisterPreview(): React.JSX.Element {
     </div>
   );
 }
+

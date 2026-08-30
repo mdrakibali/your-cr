@@ -1,40 +1,15 @@
 import React from "react";
+import { STATS_ITEMS } from "@/lib/mock-data/landing";
 
-export default function StatsSection() {
-  const stats = [
-    {
-      value: "10k+",
-      label: "Verified Class Representatives",
-      bgClass: "bg-[#fff8f2] border-amber-100/50",
-      textClass: "text-amber-600",
-    },
-    {
-      value: "500+",
-      label: "Colleges & Universities",
-      bgClass: "bg-[#fff2f3] border-rose-100/50",
-      textClass: "text-rose-600",
-    },
-    {
-      value: "150k+",
-      label: "Students staying synchronized",
-      bgClass: "bg-[#f0fdff] border-cyan-100/50",
-      textClass: "text-cyan-600",
-    },
-    {
-      value: "1M+",
-      label: "Notice & routine updates shared",
-      bgClass: "bg-[#faf6ff] border-purple-100/50",
-      textClass: "text-purple-600",
-    },
-  ];
-
+// Classroom stats and social proof metrics section
+export function StatsSection(): React.JSX.Element {
   return (
     <section className="py-12 sm:py-16 2xl:py-20 bg-white overflow-hidden">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-center">
           {/* Left Side: 2x2 Grid of Stat Cards */}
           <div className="lg:col-span-6 grid grid-cols-2 gap-3 sm:gap-4 lg:gap-5 2xl:gap-6 order-2 lg:order-1">
-            {stats.map((stat, idx) => (
+            {STATS_ITEMS.map((stat, idx) => (
               <div
                 key={idx}
                 className={`p-4 sm:p-5 md:p-6 2xl:p-8 rounded-2xl sm:rounded-3xl border flex flex-col items-center justify-center text-center ${stat.bgClass}`}

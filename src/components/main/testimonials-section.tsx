@@ -1,64 +1,25 @@
 "use client";
-import React, { useState, useEffect } from "react";
+
 import { Star } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { TESTIMONIALS_ITEMS } from "@/lib/mock-data/landing";
 
-export default function TestimonialsSection() {
-  const testimonials = [
-    {
-      name: "Arafat Rahman",
-      role: "Class Representative, DU",
-      avatar: "AR",
-      avatarBg: "bg-blue-100 text-blue-700",
-      rating: 5,
-      text: "YourCR has completely changed how I coordinate Section B. I used to spend hours answering the same questions about routines and room changes. Now, I just upload it once, and everyone sees it instantly.",
-    },
-    {
-      name: "Tahmina Akter",
-      role: "Student, NSU",
-      avatar: "TA",
-      avatarBg: "bg-emerald-100 text-emerald-700",
-      rating: 5,
-      text: "As a student, I was always missing exam notices and assignment deadlines in WhatsApp chat floods. Now, I just open YourCR and see all official notices in order. It's an absolute lifesaver!",
-    },
-    {
-      name: "Sajid Hasan",
-      role: "Class Representative, BUET",
-      avatar: "SH",
-      avatarBg: "bg-purple-100 text-purple-700",
-      rating: 5,
-      text: "Excellent tool for managing directories and classroom resources. I can register students, assign lab groups, and link teacher emails instantly. The system is extremely fast and intuitive.",
-    },
-    {
-      name: "Maria Chowdhury",
-      role: "Student, RU",
-      avatar: "MC",
-      avatarBg: "bg-pink-100 text-pink-700",
-      rating: 5,
-      text: "The assignment tracker with countdown warnings is so helpful. I haven't missed a single deadline since we started using YourCR. Highly recommend it to other CRs!",
-    },
-    {
-      name: "Nayeem Islam",
-      role: "Class Representative, IUT",
-      avatar: "NI",
-      avatarBg: "bg-amber-100 text-amber-700",
-      rating: 5,
-      text: "Admin approval was fast, and inviting my entire class via roll sheet was seamless. Managing room changes during exams is now a single-tap job instead of 20 chat messages.",
-    },
-  ];
-
-  const [activeIndex, setActiveIndex] = useState(2); // Start at center (Sajid)
+// Carousel section displaying student and CR feedback
+export function TestimonialsSection(): React.JSX.Element {
+  const [activeIndex, setActiveIndex] = useState(2);
   const [cardWidth, setCardWidth] = useState(450);
   const [gap, setGap] = useState(24);
 
   useEffect(() => {
-    // Auto slide every 4 seconds
+    // Auto slide carousel every 4 seconds
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
+      setActiveIndex((prev) => (prev + 1) % TESTIMONIALS_ITEMS.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, [testimonials.length]);
+  }, []);
 
   useEffect(() => {
+    // Responsive card width calculation across 5 device tiers
     const handleResize = () => {
       if (window.innerWidth < 480) {
         setCardWidth(260);
@@ -106,7 +67,7 @@ export default function TestimonialsSection() {
               transform: `translateX(calc(50% - ${cardWidth / 2}px - (${activeIndex} * (${cardWidth}px + ${gap}px))))`,
             }}
           >
-            {testimonials.map((item, idx) => {
+            {TESTIMONIALS_ITEMS.map((item, idx) => {
               const isActive = idx === activeIndex;
               return (
                 <div
@@ -150,8 +111,8 @@ export default function TestimonialsSection() {
                       ))}
                     </div>
 
-                    {/* Review Text */}
-                    <p className="text-xs sm:text-sm text-gray-600 leading-relaxed font-normal text-left">
+                    {/* Review Quote */}
+                    <p className="text-left text-xs sm:text-xs md:text-sm 2xl:text-sm text-gray-600 leading-relaxed italic">
                       "{item.text}"
                     </p>
                   </div>
@@ -159,21 +120,6 @@ export default function TestimonialsSection() {
               );
             })}
           </div>
-        </div>
-
-        {/* Bottom Pagination Dots */}
-        <div className="mt-8 flex justify-center items-center gap-1.5">
-          {testimonials.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveIndex(idx)}
-              className={`rounded-full transition-all duration-300 cursor-pointer ${
-                idx === activeIndex
-                  ? "w-2.5 h-2.5 bg-primary"
-                  : "w-1.5 h-1.5 bg-purple-200"
-              }`}
-            />
-          ))}
         </div>
       </div>
     </section>

@@ -1,39 +1,15 @@
 "use client";
+
+import { Minus, Plus } from "lucide-react";
 import React, { useState } from "react";
-import { Plus, Minus } from "lucide-react";
+import { FAQ_ITEMS } from "@/lib/mock-data/landing";
 
-export default function FaqSection() {
-  const faqs = [
-    {
-      question: "Who is YourCR for?",
-      answer:
-        "YourCR is designed for Class Representatives (CRs) who want to coordinate coursework efficiently, and students who want to track schedules, notices, and assignments without getting lost in busy group chats.",
-    },
-    {
-      question: "How does a CR get verified?",
-      answer:
-        "Upon registration, a CR submits their college, department, and class section details. Our administrative team reviews and verifies the profile to ensure there is only one authentic hub per section.",
-    },
-    {
-      question: "How do students join their class board?",
-      answer:
-        "Once the CR's account is verified, they can enroll students using their roll numbers and email addresses. Enrolled students receive an automated invitation email with their dashboard credentials.",
-    },
-    {
-      question: "Can students modify routines or post notices?",
-      answer:
-        "No, only the verified Class Representative (CR) has permission to publish announcements, edit schedules, and list teacher contact details. Students have read-only access to view these updates.",
-    },
-    {
-      question: "Is YourCR free to use?",
-      answer:
-        "Yes, YourCR is 100% free for both Class Representatives and students to manage their classrooms and coordinate semesters.",
-    },
-  ];
+// Frequently Asked Questions accordion section
+export function FaqSection(): React.JSX.Element {
+  const [openIdx, setOpenIdx] = useState<number | null>(0);
 
-  const [openIdx, setOpenIdx] = useState<number | null>(null);
-
-  const toggleFaq = (idx: number) => {
+  // Toggle FAQ accordion item
+  const toggleFaq = (idx: number): void => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
 
@@ -52,13 +28,14 @@ export default function FaqSection() {
             </p>
           </div>
 
-          {/* Right Side: Accordion Accordion List */}
+          {/* Right Side: Accordion List */}
           <div className="lg:col-span-7 divide-y divide-gray-100 border-t border-b border-gray-100">
-            {faqs.map((faq, idx) => {
+            {FAQ_ITEMS.map((faq, idx) => {
               const isOpen = openIdx === idx;
               return (
                 <div key={idx} className="py-3.5 sm:py-4 2xl:py-5 text-left">
                   <button
+                    type="button"
                     onClick={() => toggleFaq(idx)}
                     className="w-full flex items-start gap-3 sm:gap-4 text-left cursor-pointer focus:outline-none"
                   >
@@ -83,7 +60,7 @@ export default function FaqSection() {
                     </span>
                   </button>
 
-                  {/* Smoothly Expandable Answer */}
+                  {/* Expandable Answer */}
                   <div
                     className={`grid transition-all duration-300 ease-in-out overflow-hidden ${
                       isOpen

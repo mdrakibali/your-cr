@@ -77,3 +77,4 @@ export function RoutineMockup(): React.JSX.Element {
     </div>
   );
 }
+

@@ -1,8 +1,10 @@
-import logo from "@/assets/logo/logo.png";
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
+import logo from "@/assets/logo/logo.png";
 
-const Logo = () => {
+// YourCR brand logo with home link
+export function Logo(): React.JSX.Element {
   return (
     <Link href="/">
       <Image
@@ -15,6 +17,4 @@ const Logo = () => {
       />
     </Link>
   );
-};
-
-export default Logo;
+}

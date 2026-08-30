@@ -115,3 +115,4 @@ export function StudentMockup(): React.JSX.Element {
     </div>
   );
 }
+

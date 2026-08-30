@@ -1,8 +1,11 @@
 import React from "react";
-import Navbar from "@/components/common/navbar";
-import Footer from "@/components/common/footer";
-
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+import { Navbar } from "@/components/common/navbar";
+import { Footer } from "@/components/common/footer";
+interface MainLayoutProps {
+  children: React.ReactNode;
+}
+// Layout wrapper for landing and marketing pages
+export default function MainLayout({ children }: MainLayoutProps): React.JSX.Element {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -10,6 +13,4 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <Footer />
     </div>
   );
-};
-
-export default MainLayout;
+}

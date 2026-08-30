@@ -54,3 +54,4 @@ export function NoticeMockup(): React.JSX.Element {
     </div>
   );
 }
+

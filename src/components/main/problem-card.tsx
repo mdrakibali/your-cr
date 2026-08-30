@@ -29,3 +29,4 @@ export function ProblemCard({ image, title, quote }: ProblemCardProps): React.JS
     </div>
   );
 }
+

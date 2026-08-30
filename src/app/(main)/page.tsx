@@ -11,7 +11,7 @@ import FaqSection from "@/components/main/faq-section";
 
 export default function HomePage() {
   return (
-    <div className="bg-white">
+    <section className="bg-white">
       <Hero />
       <TrustedUniversities />
       <ProblemSection />
@@ -22,6 +22,6 @@ export default function HomePage() {
       <StatsSection />
       <TestimonialsSection />
       <FaqSection />
-    </div>
+    </section>
   );
 }

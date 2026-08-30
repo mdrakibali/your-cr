@@ -32,64 +32,64 @@ const TwitterIcon = ({ className }: { className?: string }) => (
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-gray-100 bg-gray-50/50 py-12">
-      <div className="container grid grid-cols-1 gap-8 md:grid-cols-4">
+    <footer className="w-full border-t border-gray-100 bg-gray-50/50 py-8 sm:py-10 2xl:py-12">
+      <div className="container grid grid-cols-1 gap-6 sm:gap-8 md:grid-cols-4">
         {/* Brand Column */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3 sm:gap-4">
           <Logo />
-          <p className="text-sm text-gray-500 leading-relaxed">
+          <p className="text-xs sm:text-sm text-gray-500 leading-relaxed max-w-sm">
             An all-in-one student management and class representative
             coordination tool designed for modern classrooms.
           </p>
           {/* Social Links */}
-          <div className="flex items-center gap-4 mt-2">
+          <div className="flex items-center gap-3.5 sm:gap-4 mt-1 sm:mt-2">
             <a
               href="#"
               className="text-gray-400 hover:text-primary transition-colors"
             >
-              <GithubIcon className="h-5 w-5" />
+              <GithubIcon className="size-4.5 sm:size-5" />
             </a>
             <a
               href="#"
               className="text-gray-400 hover:text-primary transition-colors"
             >
-              <TwitterIcon className="h-5 w-5" />
+              <TwitterIcon className="size-4.5 sm:size-5" />
             </a>
             <a
               href="#"
               className="text-gray-400 hover:text-primary transition-colors"
             >
-              <Mail className="h-5 w-5" />
+              <Mail className="size-4.5 sm:size-5" />
             </a>
           </div>
         </div>
 
         {/* Quick Links Column */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+          <h3 className="text-xs sm:text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
             Features
           </h3>
-          <ul className="space-y-2.5">
+          <ul className="space-y-2 sm:space-y-2.5">
             <li>
               <Link
-                href="/cr"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="/login"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 CR Portal
               </Link>
             </li>
             <li>
               <Link
-                href="/students"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="/#features"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Student Directory
               </Link>
             </li>
             <li>
               <Link
-                href="/routine"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="/#features"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Class Routines
               </Link>
@@ -99,30 +99,30 @@ export default function Footer() {
 
         {/* Support Column */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+          <h3 className="text-xs sm:text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
             Support
           </h3>
-          <ul className="space-y-2.5">
+          <ul className="space-y-2 sm:space-y-2.5">
             <li>
               <Link
-                href="/docs"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="/#faq"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Documentation
               </Link>
             </li>
             <li>
               <Link
-                href="/help"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="/#faq"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Help Center
               </Link>
             </li>
             <li>
               <Link
-                href="/contact"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="/#faq"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Contact Us
               </Link>
@@ -132,22 +132,22 @@ export default function Footer() {
 
         {/* Legal Column */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wider mb-4">
+          <h3 className="text-xs sm:text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
             Legal
           </h3>
-          <ul className="space-y-2.5">
+          <ul className="space-y-2 sm:space-y-2.5">
             <li>
               <Link
-                href="/privacy"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="#"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Privacy Policy
               </Link>
             </li>
             <li>
               <Link
-                href="/terms"
-                className="text-sm text-gray-500 hover:text-primary transition-colors"
+                href="#"
+                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
               >
                 Terms of Service
               </Link>
@@ -156,11 +156,11 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="container mt-12 pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-xs text-gray-400">
+      <div className="container mt-8 sm:mt-10 2xl:mt-12 pt-6 sm:pt-8 border-t border-gray-100 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4">
+        <p className="text-[11px] sm:text-xs text-gray-400">
           &copy; {new Date().getFullYear()} YourCR. All rights reserved.
         </p>
-        <p className="text-xs text-gray-400">
+        <p className="text-[11px] sm:text-xs text-gray-400">
           Built with Next.js & Tailwind CSS
         </p>
       </div>

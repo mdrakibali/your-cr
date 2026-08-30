@@ -1,27 +1,12 @@
 "use client";
-
 import React from "react";
 import { Link as LinkIcon, Calendar, Trash2, Pin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
+import { NoticeCardProps } from "@/types/dashboard";
 
-interface Notice {
-  id: string;
-  title: string;
-  body: string;
-  date: string;
-  priority: string;
-  attachmentUrl: string;
-  author: string;
-}
-
-interface NoticeCardProps {
-  notice: Notice;
-  isCR: boolean;
-  onDelete: () => void;
-}
-
-export default function NoticeCard({
+// Notice announcement card component
+export function NoticeCard({
   notice,
   isCR,
   onDelete,
@@ -54,17 +39,15 @@ export default function NoticeCard({
             <span>{notice.date}</span>
           </div>
         </div>
-
         {/* Title & Body */}
         <div className="space-y-2">
-          <h3 className="text-base font-bold text-foreground font-[family-name:var(--font-besley)]">
+          <h3 className="text-base font-bold text-foreground font-(family-name:--font-besley)">
             {notice.title}
           </h3>
           <p className="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
             {notice.body}
           </p>
         </div>
-
         {/* Attachments / Footer */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-3 border-t border-muted/60">
           <div>
@@ -102,3 +85,5 @@ export default function NoticeCard({
     </Card>
   );
 }
+
+export default NoticeCard;

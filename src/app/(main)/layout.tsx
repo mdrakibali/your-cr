@@ -1,9 +1,8 @@
 import React from "react";
 import { Navbar } from "@/components/common/navbar";
 import { Footer } from "@/components/common/footer";
-interface MainLayoutProps {
-  children: React.ReactNode;
-}
+import { MainLayoutProps } from "@/types/layout";
+
 // Layout wrapper for landing and marketing pages
 export default function MainLayout({ children }: MainLayoutProps): React.JSX.Element {
   return (

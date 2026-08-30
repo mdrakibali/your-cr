@@ -1,111 +1,25 @@
 "use client";
 
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 import { cn } from "@/lib/utils";
-import {
-  LayoutDashboard,
-  GraduationCap,
-  Users,
-  BookOpen,
-  Calendar,
-  User,
-  Bell,
-  Megaphone,
-  AlertCircle,
-  Presentation,
-  ClipboardList,
-  LogOut,
-  School,
-} from "lucide-react";
+import { DASHBOARD_NAV_ITEMS } from "@/lib/mock-data/navigation";
+import { SidebarProps } from "@/types/navigation";
 
-type Role = "CR" | "STUDENT";
+export { DASHBOARD_NAV_ITEMS as NAV_ITEMS } from "@/lib/mock-data/navigation";
 
-interface SidebarProps {
-  role: Role;
-  className?: string;
-  onItemClick?: () => void;
-}
-
-export const NAV_ITEMS = [
-  {
-    name: "Dashboard",
-    href: "/dashboard",
-    icon: LayoutDashboard,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Routine",
-    href: "/dashboard/routine",
-    icon: Calendar,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Assessments",
-    href: "/dashboard/assessments",
-    icon: ClipboardList,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Notice",
-    href: "/dashboard/notice",
-    icon: Megaphone,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Issues",
-    href: "/dashboard/issues",
-    icon: AlertCircle,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Teachers",
-    href: "/dashboard/teachers",
-    icon: GraduationCap,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Students",
-    href: "/dashboard/students",
-    icon: Users,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Subjects",
-    href: "/dashboard/subjects",
-    icon: BookOpen,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Classes",
-    href: "/dashboard/classes",
-    icon: Presentation,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Academic Info",
-    href: "/dashboard/academic",
-    icon: School,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Notifications",
-    href: "/dashboard/notifications",
-    icon: Bell,
-    roles: ["CR", "STUDENT"],
-  },
-  {
-    name: "Profile",
-    href: "/dashboard/profile",
-    icon: User,
-    roles: ["CR", "STUDENT"],
-  },
-];
-
-export default function Sidebar({ role, className, onItemClick }: SidebarProps) {
+// Dashboard desktop sidebar navigation component
+export function Sidebar({
+  role,
+  className = "",
+  onItemClick,
+}: SidebarProps): React.JSX.Element {
   const pathname = usePathname();
-
-  const filteredItems = NAV_ITEMS.filter((item) => item.roles.includes(role));
+  const filteredItems = DASHBOARD_NAV_ITEMS.filter((item) =>
+    item.roles.includes(role)
+  );
 
   return (
     <aside
@@ -154,8 +68,8 @@ export default function Sidebar({ role, className, onItemClick }: SidebarProps) 
       {/* Sidebar Footer / Logout */}
       <div className="p-4 border-t border-border">
         <button
+          type="button"
           onClick={() => {
-            // handle logout
             window.location.href = "/login";
           }}
           className="flex w-full items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors cursor-pointer"
@@ -167,3 +81,5 @@ export default function Sidebar({ role, className, onItemClick }: SidebarProps) 
     </aside>
   );
 }
+
+export default Sidebar;

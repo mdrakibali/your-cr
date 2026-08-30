@@ -23,14 +23,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { studentInviteSchema, type StudentInviteFormData } from "@/validation/dashboard";
+import { StudentDialogProps } from "@/types/dashboard";
 
-interface StudentDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: StudentInviteFormData) => void;
-}
-
-export default function StudentDialog({
+// Student invitation modal dialog
+export function StudentDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -189,3 +185,5 @@ export default function StudentDialog({
     </Dialog>
   );
 }
+
+export default StudentDialog;

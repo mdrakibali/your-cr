@@ -1,10 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { UploadItemProps } from "@/types/landing";
-
-interface UploadFloatingBadgeProps extends UploadItemProps {
-  className?: string;
-}
+import { UploadFloatingBadgeProps } from "@/types/landing";
 
 // Floating notification/upload badge
 export function UploadFloatingBadge({
@@ -33,4 +29,3 @@ export function UploadFloatingBadge({
     </div>
   );
 }
-

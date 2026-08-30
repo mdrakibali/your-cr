@@ -1,30 +1,17 @@
 "use client";
 
-import React from "react";
 import { Edit, Trash2 } from "lucide-react";
+import React from "react";
 import { Button } from "@/components/ui/button";
+import { SubjectCardProps } from "@/types/dashboard";
 
-interface Subject {
-  id: string;
-  code: string;
-  title: string;
-  credits: string;
-  teacher: string;
-}
-
-interface SubjectCardProps {
-  subject: Subject;
-  isCR: boolean;
-  onEdit: () => void;
-  onDelete: () => void;
-}
-
-export default function SubjectCard({
+// Subject curriculum card component
+export function SubjectCard({
   subject,
   isCR,
   onEdit,
   onDelete,
-}: SubjectCardProps) {
+}: SubjectCardProps): React.JSX.Element {
   return (
     <div className="bg-white border border-border rounded-md p-5 flex flex-col justify-between hover:border-[#2459c8]/30 transition-colors">
       <div className="space-y-3">
@@ -50,18 +37,22 @@ export default function SubjectCard({
       {isCR && (
         <div className="flex justify-end gap-2 mt-5 pt-3 border-t border-muted/60">
           <Button
+            type="button"
             variant="ghost"
             size="icon-sm"
             onClick={onEdit}
             className="text-muted-foreground hover:text-foreground cursor-pointer"
+            aria-label="Edit subject"
           >
             <Edit className="size-4" />
           </Button>
           <Button
+            type="button"
             variant="ghost"
             size="icon-sm"
             onClick={onDelete}
             className="text-red-500 hover:text-red-700 hover:bg-red-50 cursor-pointer"
+            aria-label="Delete subject"
           >
             <Trash2 className="size-4" />
           </Button>
@@ -70,3 +61,5 @@ export default function SubjectCard({
     </div>
   );
 }
+
+export default SubjectCard;

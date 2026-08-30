@@ -30,14 +30,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { issueSchema, type IssueFormData } from "@/validation/dashboard";
+import { IssueDialogProps } from "@/types/dashboard";
 
-interface IssueDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: IssueFormData) => void;
-}
-
-export default function IssueDialog({
+// Issue creation & submission dialog modal
+export function IssueDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -140,4 +136,5 @@ export default function IssueDialog({
     </Dialog>
   );
 }
-// Let's resolve the `DialogProps &` type definition type checking issue by removing unused types from imports/parameters.
+
+export default IssueDialog;

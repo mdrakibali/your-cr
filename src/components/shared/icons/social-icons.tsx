@@ -41,3 +41,4 @@ export function TwitterIcon({ size = 20, className = "", ...props }: IconProps):
     </svg>
   );
 }
+

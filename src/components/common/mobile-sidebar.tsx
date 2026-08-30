@@ -1,16 +1,23 @@
 "use client";
-
-import { Dialog, DialogContent, DialogPortal, DialogOverlay, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import Sidebar from "./sidebar";
 import { X } from "lucide-react";
+import React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Sidebar } from "@/components/common/sidebar";
+import { MobileSidebarProps } from "@/types/navigation";
 
-interface MobileSidebarProps {
-  role: "CR" | "STUDENT";
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export default function MobileSidebar({ role, isOpen, onClose }: MobileSidebarProps) {
+// Dashboard mobile drawer navigation sidebar
+export function MobileSidebar({
+  role,
+  isOpen,
+  onClose,
+}: MobileSidebarProps): React.JSX.Element {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogPortal>
@@ -24,10 +31,15 @@ export default function MobileSidebar({ role, isOpen, onClose }: MobileSidebarPr
             List of routes for your dashboard based on your classroom role.
           </DialogDescription>
 
-          <Sidebar role={role} className="w-full h-full border-r-0" onItemClick={onClose} />
+          <Sidebar
+            role={role}
+            className="w-full h-full border-r-0"
+            onItemClick={onClose}
+          />
 
           {/* Close button floating outside the drawer */}
           <button
+            type="button"
             onClick={onClose}
             className="absolute top-3 right-[-48px] size-10 flex items-center justify-center bg-white rounded-r-xl border-y border-r border-border shadow-lg focus:outline-none cursor-pointer"
             aria-label="Close menu"
@@ -39,3 +51,5 @@ export default function MobileSidebar({ role, isOpen, onClose }: MobileSidebarPr
     </Dialog>
   );
 }
+
+export default MobileSidebar;

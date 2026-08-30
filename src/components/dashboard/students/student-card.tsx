@@ -1,27 +1,11 @@
 "use client";
-
-import React from "react";
 import { Trash2, CheckCircle2, AlertCircle, Mail, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { StudentCardProps } from "@/types/dashboard";
 
-interface Student {
-  id: string;
-  name: string;
-  roll: string;
-  email: string;
-  phone: string;
-  status: string;
-  avatar?: string;
-}
-
-interface StudentCardProps {
-  student: Student;
-  isCR: boolean;
-  onDelete: () => void;
-}
-
-export default function StudentCard({
+// Student directory roster card component
+export function StudentCard({
   student,
   isCR,
   onDelete,
@@ -155,3 +139,5 @@ export default function StudentCard({
     </>
   );
 }
+
+export default StudentCard;

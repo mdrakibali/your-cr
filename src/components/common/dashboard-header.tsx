@@ -1,19 +1,20 @@
 "use client";
-import { usePathname } from "next/navigation";
-import { Menu, Bell, User as UserIcon } from "lucide-react";
-import { NAV_ITEMS } from "./sidebar";
+
+import { Bell, Menu, User as UserIcon } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import React from "react";
+import { DASHBOARD_NAV_ITEMS } from "@/lib/mock-data/navigation";
+import { DashboardHeaderProps } from "@/types/layout";
 
-interface DashboardHeaderProps {
-  role: "CR" | "STUDENT";
-  onMenuClick: () => void;
-}
-
-export default function DashboardHeader({ role, onMenuClick }: DashboardHeaderProps) {
+// Dashboard top header with page title, notifications, and profile status
+export function DashboardHeader({
+  onMenuClick,
+}: DashboardHeaderProps): React.JSX.Element {
   const pathname = usePathname();
 
   // Find active nav item name
-  const activeNavItem = NAV_ITEMS.find((item) => item.href === pathname);
+  const activeNavItem = DASHBOARD_NAV_ITEMS.find((item) => item.href === pathname);
   const pageTitle = activeNavItem ? activeNavItem.name : "Dashboard";
 
   return (
@@ -21,6 +22,7 @@ export default function DashboardHeader({ role, onMenuClick }: DashboardHeaderPr
       {/* Left side: Hamburger & Title */}
       <div className="flex items-center gap-3 sm:gap-4">
         <button
+          type="button"
           onClick={onMenuClick}
           className="lg:hidden p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground focus:outline-none cursor-pointer"
           aria-label="Open menu"
@@ -39,6 +41,7 @@ export default function DashboardHeader({ role, onMenuClick }: DashboardHeaderPr
         <Link
           href="/dashboard/notifications"
           className="relative p-2 rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground cursor-pointer"
+          aria-label="Notifications"
         >
           <Bell className="size-5" />
           <span className="absolute top-1 right-1 size-2 bg-red-500 rounded-full" />
@@ -57,6 +60,7 @@ export default function DashboardHeader({ role, onMenuClick }: DashboardHeaderPr
           <Link
             href="/dashboard/profile"
             className="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors cursor-pointer"
+            aria-label="User profile"
           >
             <UserIcon className="size-4" />
           </Link>
@@ -65,3 +69,5 @@ export default function DashboardHeader({ role, onMenuClick }: DashboardHeaderPr
     </header>
   );
 }
+
+export default DashboardHeader;

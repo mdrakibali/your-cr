@@ -20,6 +20,19 @@ export interface ProblemCardProps {
   quote: string;
 }
 
+// Feature block card props
+export interface FeatureBlockProps {
+  icon: StaticImageData;
+  title: string;
+  subtitle: string;
+  subtitleColorClass: string;
+  description1: string;
+  description2: string;
+  bgGradientClass: string;
+  reversed?: boolean;
+  children: React.ReactNode;
+}
+
 // Stats counter item
 export interface StatItemProps {
   value: string;
@@ -62,3 +75,10 @@ export interface HowItWorksStepProps {
   title: string;
   desc: string;
 }
+
+// Footer link item
+export interface FooterLinkItem {
+  label: string;
+  href: string;
+}
+

@@ -1,28 +1,20 @@
 "use client";
 
-import React from "react";
 import { AlertTriangle } from "lucide-react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
-  DialogTitle,
   DialogDescription,
   DialogFooter,
+  DialogHeader,
+  DialogTitle,
 } from "@/components/ui/dialog";
+import { DeleteConfirmDialogProps } from "@/types/common";
 
-interface DeleteConfirmDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  title?: string;
-  description?: string;
-  confirmText?: string;
-  loading?: boolean;
-}
-
-export default function DeleteConfirmDialog({
+// Modal dialog confirming permanent item deletion
+export function DeleteConfirmDialog({
   isOpen,
   onClose,
   onConfirm,
@@ -30,7 +22,7 @@ export default function DeleteConfirmDialog({
   description = "Are you sure you want to delete this item? This action cannot be undone.",
   confirmText = "Delete",
   loading = false,
-}: DeleteConfirmDialogProps) {
+}: DeleteConfirmDialogProps): React.JSX.Element {
   return (
     <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="bg-white sm:max-w-[440px]">
@@ -74,3 +66,5 @@ export default function DeleteConfirmDialog({
     </Dialog>
   );
 }
+
+export default DeleteConfirmDialog;

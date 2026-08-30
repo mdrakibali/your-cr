@@ -1,27 +1,20 @@
 "use client";
 
-import React, { useState, createContext, useContext } from "react";
-import Sidebar from "@/components/common/sidebar";
-import MobileSidebar from "@/components/common/mobile-sidebar";
-import DashboardHeader from "@/components/common/dashboard-header";
-
-interface DashboardContextType {
-  role: "CR" | "STUDENT";
-}
+import React, { createContext, useContext, useState } from "react";
+import { Sidebar } from "@/components/common/sidebar";
+import { MobileSidebar } from "@/components/common/mobile-sidebar";
+import { DashboardHeader } from "@/components/common/dashboard-header";
+import { DashboardContextType, DashboardLayoutWrapperProps } from "@/types/layout";
 
 const DashboardContext = createContext<DashboardContextType>({ role: "STUDENT" });
 
 export const useDashboard = () => useContext(DashboardContext);
 
-interface DashboardLayoutWrapperProps {
-  role: "CR" | "STUDENT";
-  children: React.ReactNode;
-}
-
-export default function DashboardLayoutWrapper({
+// Dashboard layout wrapping sidebar, header, and main content view
+export function DashboardLayoutWrapper({
   role,
   children,
-}: DashboardLayoutWrapperProps) {
+}: DashboardLayoutWrapperProps): React.JSX.Element {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -57,3 +50,5 @@ export default function DashboardLayoutWrapper({
     </DashboardContext.Provider>
   );
 }
+
+export default DashboardLayoutWrapper;

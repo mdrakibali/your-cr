@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import { Search } from "lucide-react";
+import React from "react";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -10,18 +10,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { SearchFilterBarProps } from "@/types/common";
 
-interface SearchFilterBarProps {
-  searchValue: string;
-  onSearchChange: (val: string) => void;
-  searchPlaceholder?: string;
-  filterValue?: string;
-  onFilterChange?: (val: string) => void;
-  filterOptions?: { label: string; value: string }[] | null;
-  filterPlaceholder?: string;
-}
-
-export default function SearchFilterBar({
+// Search and filter controls bar for dashboard lists
+export function SearchFilterBar({
   searchValue,
   onSearchChange,
   searchPlaceholder = "Search...",
@@ -29,7 +21,7 @@ export default function SearchFilterBar({
   onFilterChange,
   filterOptions = null,
   filterPlaceholder = "All",
-}: SearchFilterBarProps) {
+}: SearchFilterBarProps): React.JSX.Element {
   return (
     <div className="flex flex-col sm:flex-row gap-3 w-full">
       {/* Search Input */}
@@ -63,3 +55,5 @@ export default function SearchFilterBar({
     </div>
   );
 }
+
+export default SearchFilterBar;

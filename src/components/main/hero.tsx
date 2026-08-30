@@ -1,5 +1,4 @@
 import { MoveRight, Play } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -8,20 +7,18 @@ import { HERO_AVATARS } from "@/lib/mock-data/landing";
 // Hero section highlighting value proposition and primary call-to-actions
 export function Hero(): React.JSX.Element {
   return (
-    <section className="relative overflow-hidden bg-primary/10 py-10 sm:py-12 md:py-14 lg:py-16 2xl:py-20">
+    <section className="relative overflow-hidden bg-primary/10 py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24 2xl:py-28">
       <div className="container flex flex-col items-center text-center">
         {/* Social Proof Badges */}
         <div className="flex items-center justify-center gap-2.5 sm:gap-3 lg:gap-4 pb-3 sm:pb-3.5 md:pb-4 opacity-90">
           <div className="flex -space-x-2 sm:-space-x-2.5 2xl:-space-x-3">
             {HERO_AVATARS.map((avatar, idx) => (
-              <Image
+              <div
                 key={idx}
-                alt="Active student avatar"
-                width={44}
-                height={44}
-                className="size-7 sm:size-8 2xl:size-9 rounded-full border-2 border-white dark:border-background-dark object-cover"
-                src={avatar}
-              />
+                className={`size-7 sm:size-8 2xl:size-9 rounded-full border-2 border-white flex items-center justify-center text-[10px] sm:text-xs font-bold ${avatar.bg}`}
+              >
+                {avatar.initials}
+              </div>
             ))}
           </div>
           <div className="font-semibold text-xs sm:text-xs md:text-sm 2xl:text-sm text-gray-700">
@@ -43,20 +40,19 @@ export function Hero(): React.JSX.Element {
 
         {/* CTA Buttons */}
         <div className="mt-6 sm:mt-8 2xl:mt-10 flex flex-col sm:flex-row gap-3 sm:gap-3.5 2xl:gap-4 justify-center items-center">
-          <Link href="/login" className="w-full sm:w-auto">
-            <Button
-              variant="default"
-              className="w-full sm:w-auto font-semibold 2xl:font-bold text-white bg-primary rounded-md px-5 sm:px-6 2xl:px-8 h-10 sm:h-11 2xl:h-13 text-xs sm:text-sm 2xl:text-sm transition-all cursor-pointer"
-            >
-              Get Started as CR <MoveRight className="size-3.5 sm:size-4 ml-1" />
+          <Link href="/register">
+            <Button className="w-full sm:w-auto h-10 sm:h-11 md:h-11 2xl:h-12 px-5 sm:px-6 2xl:px-8 text-xs sm:text-sm 2xl:text-base font-semibold 2xl:font-bold rounded-lg bg-primary text-white hover:bg-primary/95 flex items-center justify-center gap-2 cursor-pointer">
+              Register as CR <MoveRight className="size-3.5 sm:size-4" />
             </Button>
           </Link>
-          <Button
-            type="button"
-            className="w-full sm:w-auto font-semibold 2xl:font-bold bg-white border border-gray-300 text-gray-600 rounded-md px-4 sm:px-5 2xl:px-5 h-10 sm:h-11 2xl:h-13 text-xs sm:text-sm 2xl:text-sm transition-all cursor-pointer hover:bg-white"
-          >
-            <Play className="size-3.5 sm:size-4 2xl:size-5 mr-1" /> Watch How It Works
-          </Button>
+          <Link href="/#how-it-works">
+            <Button
+              variant="outline"
+              className="w-full sm:w-auto h-10 sm:h-11 md:h-11 2xl:h-12 px-5 sm:px-6 2xl:px-8 text-xs sm:text-sm 2xl:text-base font-semibold 2xl:font-bold rounded-lg border border-primary text-primary hover:bg-primary/5 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <Play className="size-3.5 sm:size-4 fill-primary" /> How It Works
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

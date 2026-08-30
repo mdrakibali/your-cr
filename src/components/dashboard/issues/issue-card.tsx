@@ -6,24 +6,10 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface Issue {
-  id: string;
-  title: string;
-  description: string;
-  category: string;
-  status: string;
-  reporter: string;
-  date: string;
-}
+import { IssueCardProps } from "@/types/dashboard";
 
-interface IssueCardProps {
-  issue: Issue;
-  isCR: boolean;
-  onUpdateStatus: (newStatus: string) => void;
-  onDelete: () => void;
-}
-
-export default function IssueCard({
+// Issue item card component
+export function IssueCard({
   issue,
   isCR,
   onUpdateStatus,
@@ -112,3 +98,5 @@ export default function IssueCard({
     </Card>
   );
 }
+
+export default IssueCard;

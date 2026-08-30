@@ -29,17 +29,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { routineSchema, type RoutineFormData } from "@/validation/dashboard";
+import { RoutineDialogProps } from "@/types/dashboard";
 
-interface RoutineDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: RoutineFormData) => void;
-  title: string;
-  description: string;
-  defaultValues?: RoutineFormData | null;
-}
-
-export default function RoutineDialog({
+// Routine creation & editing modal dialog
+export function RoutineDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -236,3 +229,5 @@ export default function RoutineDialog({
     </Dialog>
   );
 }
+
+export default RoutineDialog;

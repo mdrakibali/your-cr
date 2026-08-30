@@ -5,30 +5,10 @@ import { Clock, MapPin, User, RefreshCw, XCircle, Edit, Trash2, Globe, Home } fr
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface ClassSlot {
-  id: string;
-  day: string;
-  code: string;
-  title: string;
-  time: string;
-  room: string;
-  teacher: string;
-  status: string;
-  classType: string; // ONLINE or OFFLINE
-  rescheduledTime?: string;
-}
+import { RoutineSlotCardProps } from "@/types/dashboard";
 
-interface RoutineSlotCardProps {
-  cls: ClassSlot;
-  isCR: boolean;
-  onEdit: () => void;
-  onDelete: () => void;
-  onReschedule: () => void;
-  onCancel: () => void;
-  onReset: () => void;
-}
-
-export default function RoutineSlotCard({
+// Class routine time slot card component
+export function RoutineSlotCard({
   cls,
   isCR,
   onEdit,
@@ -180,3 +160,5 @@ export default function RoutineSlotCard({
     </div>
   );
 }
+
+export default RoutineSlotCard;

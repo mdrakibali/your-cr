@@ -1,27 +1,10 @@
 "use client";
-
-import React from "react";
 import { Mail, Phone, Edit, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { TeacherCardProps } from "@/types/dashboard";
 
-interface Teacher {
-  id: string;
-  name: string;
-  designation: string;
-  email: string;
-  phone: string;
-  subject: string;
-  avatar?: string;
-}
-
-interface TeacherCardProps {
-  teacher: Teacher;
-  isCR: boolean;
-  onEdit: () => void;
-  onDelete: () => void;
-}
-
-export default function TeacherCard({
+// Teacher profile card component
+export function TeacherCard({
   teacher,
   isCR,
   onEdit,
@@ -152,3 +135,5 @@ export default function TeacherCard({
     </>
   );
 }
+
+export default TeacherCard;

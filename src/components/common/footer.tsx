@@ -3,6 +3,11 @@ import Link from "next/link";
 import React from "react";
 import { Logo } from "@/components/common/logo";
 import { GithubIcon, TwitterIcon } from "@/components/shared/icons/social-icons";
+import {
+  FOOTER_FEATURES_LINKS,
+  FOOTER_LEGAL_LINKS,
+  FOOTER_SUPPORT_LINKS,
+} from "@/lib/mock-data/landing";
 
 // Footer component with brand overview, quick navigation links, and social links
 export function Footer(): React.JSX.Element {
@@ -16,7 +21,6 @@ export function Footer(): React.JSX.Element {
             An all-in-one student management and class representative
             coordination tool designed for modern classrooms.
           </p>
-          {/* Social Links */}
           <div className="flex items-center gap-3.5 sm:gap-4 mt-1 sm:mt-2">
             <a
               href="https://github.com"
@@ -46,94 +50,60 @@ export function Footer(): React.JSX.Element {
           </div>
         </div>
 
-        {/* Quick Links Column */}
+        {/* Features Column */}
         <div>
-          <h3 className="text-xs sm:text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
+          <h3 className="text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
             Features
           </h3>
           <ul className="space-y-2 sm:space-y-2.5">
-            <li>
-              <Link
-                href="/login"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                CR Portal
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#features"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Student Directory
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#features"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Class Routines
-              </Link>
-            </li>
+            {FOOTER_FEATURES_LINKS.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Support Column */}
         <div>
-          <h3 className="text-xs sm:text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
+          <h3 className="text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
             Support
           </h3>
           <ul className="space-y-2 sm:space-y-2.5">
-            <li>
-              <Link
-                href="/#faq"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Documentation
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#faq"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Help Center
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/#faq"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Contact Us
-              </Link>
-            </li>
+            {FOOTER_SUPPORT_LINKS.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
         {/* Legal Column */}
         <div>
-          <h3 className="text-xs sm:text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
+          <h3 className="text-xs 2xl:text-sm font-semibold text-gray-900 uppercase tracking-wider mb-3 sm:mb-4">
             Legal
           </h3>
           <ul className="space-y-2 sm:space-y-2.5">
-            <li>
-              <Link
-                href="#"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="#"
-                className="text-xs sm:text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
-              >
-                Terms of Service
-              </Link>
-            </li>
+            {FOOTER_LEGAL_LINKS.map((link) => (
+              <li key={link.label}>
+                <Link
+                  href={link.href}
+                  className="text-xs 2xl:text-sm text-gray-500 hover:text-primary transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

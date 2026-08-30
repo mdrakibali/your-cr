@@ -23,17 +23,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { teacherSchema, type TeacherFormData } from "@/validation/dashboard";
+import { TeacherDialogProps } from "@/types/dashboard";
 
-interface TeacherDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: TeacherFormData) => void;
-  title: string;
-  description: string;
-  defaultValues?: TeacherFormData | null;
-}
-
-export default function TeacherDialog({
+// Teacher profile creation & editing modal dialog
+export function TeacherDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -214,3 +207,5 @@ export default function TeacherDialog({
     </Dialog>
   );
 }
+
+export default TeacherDialog;

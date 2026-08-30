@@ -31,14 +31,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { noticeSchema, type NoticeFormData } from "@/validation/dashboard";
+import { NoticeDialogProps } from "@/types/dashboard";
 
-interface NoticeDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: NoticeFormData) => void;
-}
-
-export default function NoticeDialog({
+// Notice creation dialog modal
+export function NoticeDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -155,3 +151,5 @@ export default function NoticeDialog({
     </Dialog>
   );
 }
+
+export default NoticeDialog;

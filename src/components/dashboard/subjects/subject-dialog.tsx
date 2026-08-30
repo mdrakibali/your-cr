@@ -22,17 +22,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { subjectSchema, type SubjectFormData } from "@/validation/dashboard";
+import { SubjectDialogProps } from "@/types/dashboard";
 
-interface SubjectDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: SubjectFormData) => void;
-  title: string;
-  description: string;
-  defaultValues?: SubjectFormData | null;
-}
-
-export default function SubjectDialog({
+// Subject creation & editing modal dialog
+export function SubjectDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -148,3 +141,5 @@ export default function SubjectDialog({
     </Dialog>
   );
 }
+
+export default SubjectDialog;

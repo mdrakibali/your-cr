@@ -13,17 +13,10 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog";
 
-interface RescheduleDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (newTime: string, newRoom: string) => void;
-  classNameTitle?: string;
-  defaultTime?: string;
-  defaultRoom?: string;
-  subjectInfo?: string;
-}
+import { RescheduleDialogProps } from "@/types/dashboard";
 
-export default function RescheduleDialog({
+// Class reschedule modal dialog
+export function RescheduleDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -96,3 +89,5 @@ export default function RescheduleDialog({
     </Dialog>
   );
 }
+
+export default RescheduleDialog;

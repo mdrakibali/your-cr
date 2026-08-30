@@ -1,31 +1,13 @@
 "use client";
-
 import React from "react";
 import { CheckSquare, Square, Calendar, Clock, Trash2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-interface Assessment {
-  id: string;
-  title: string;
-  subject: string;
-  type: string;
-  dueDate: string;
-  dueTime: string;
-  description: string;
-}
+import { AssessmentCardProps } from "@/types/dashboard";
 
-interface AssessmentCardProps {
-  assessment: Assessment;
-  isCR: boolean;
-  isDone: boolean;
-  isOverdue: boolean;
-  daysLeft: string;
-  onToggleCheck: () => void;
-  onDelete: () => void;
-}
-
-export default function AssessmentCard({
+// Assessment card component
+export function AssessmentCard({
   assessment,
   isCR,
   isDone,
@@ -134,3 +116,5 @@ export default function AssessmentCard({
     </Card>
   );
 }
+
+export default AssessmentCard;

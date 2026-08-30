@@ -30,14 +30,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { assessmentSchema, type AssessmentFormData } from "@/validation/dashboard";
+import { AssessmentDialogProps } from "@/types/dashboard";
 
-interface AssessmentDialogProps {
-  isOpen: boolean;
-  onClose: () => void;
-  onSubmit: (data: AssessmentFormData) => void;
-}
-
-export default function AssessmentDialog({
+// Assessment creation & edit dialog modal
+export function AssessmentDialog({
   isOpen,
   onClose,
   onSubmit,
@@ -64,7 +60,7 @@ export default function AssessmentDialog({
       {/* Spacious dialog content container (sm:max-w-2xl) */}
       <DialogContent className="bg-white sm:max-w-2xl">
         <DialogHeader>
-          <DialogTitle className="font-[family-name:var(--font-besley)] text-lg">
+          <DialogTitle className="font-(family-name:--font-besley) text-lg">
             Create Sessional Assessment
           </DialogTitle>
           <DialogDescription>
@@ -186,3 +182,5 @@ export default function AssessmentDialog({
     </Dialog>
   );
 }
+
+export default AssessmentDialog;

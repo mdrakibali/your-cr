@@ -1,9 +1,10 @@
 import React from "react";
 import { Role } from "@/types/navigation";
 
-// Main marketing layout props
+// Main marketing layout props including parallel auth modal slot
 export interface MainLayoutProps {
   children: React.ReactNode;
+  auth?: React.ReactNode;
 }
 
 // Dashboard context type
@@ -28,4 +29,3 @@ export interface ErrorProps {
   error: Error & { digest?: string };
   reset: () => void;
 }
-

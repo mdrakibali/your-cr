@@ -7,7 +7,7 @@ import { HERO_AVATARS } from "@/lib/mock-data/landing";
 // Hero section highlighting value proposition and primary call-to-actions
 export function Hero(): React.JSX.Element {
   return (
-    <section className="relative overflow-hidden bg-primary/10 py-12 sm:py-14 md:py-16 lg:py-20 xl:py-24 2xl:py-28">
+    <section className="relative overflow-hidden bg-primary/10 min-h-[calc(100dvh-4rem)] lg:min-h-[calc(100dvh-4.5rem)] 2xl:min-h-[calc(100dvh-5rem)] flex items-center justify-center py-10 sm:py-12 md:py-14 lg:py-16 2xl:py-20">
       <div className="container flex flex-col items-center text-center">
         {/* Social Proof Badges */}
         <div className="flex items-center justify-center gap-2.5 sm:gap-3 lg:gap-4 pb-3 sm:pb-3.5 md:pb-4 opacity-90">

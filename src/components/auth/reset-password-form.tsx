@@ -10,6 +10,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -30,8 +31,14 @@ import {
   resetPasswordSchema,
   type ResetPasswordFormData,
 } from "@/validation/auth";
+import { ResetPasswordFormProps } from "@/types/auth";
 
-export default function ResetPasswordForm({ token }: { token: string }) {
+// Reset password form component
+export function ResetPasswordForm({
+  token: propToken,
+}: ResetPasswordFormProps = {}) {
+  const searchParams = useSearchParams();
+  const token = propToken ?? (searchParams?.get("token") ?? "");
   const [success, setSuccess] = useState(false);
   const hasToken = Boolean(token);
 
@@ -50,9 +57,9 @@ export default function ResetPasswordForm({ token }: { token: string }) {
   };
 
   return (
-    <div className="w-full max-w-[520px] mx-auto">
-      <Card className="w-full rounded-2xl ring-1 ring-border shadow-none">
-        <CardContent className="p-5 xs:p-6 sm:p-8">
+    <div className="w-full">
+      <Card className="w-full border-none shadow-none bg-transparent">
+        <CardContent className="p-5 xs:p-6 sm:p-7">
           {/* Logo */}
           <div className="mb-7 flex justify-center">
             <Logo />
@@ -208,3 +215,5 @@ export default function ResetPasswordForm({ token }: { token: string }) {
     </div>
   );
 }
+
+export default ResetPasswordForm;

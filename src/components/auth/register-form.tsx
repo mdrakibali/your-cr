@@ -172,11 +172,11 @@ function InstitutionCombobox({
           aria-expanded={open}
           aria-invalid={hasError}
           className={cn(
-            "flex h-10 w-full items-center justify-between rounded-lg border bg-transparent px-3 py-2 text-sm text-left transition-colors outline-none",
-            "focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50",
+            "flex h-10 w-full items-center justify-between rounded-lg border bg-white px-3.5 py-2 text-xs sm:text-sm text-left transition-colors outline-none",
+            "focus:outline-none focus:ring-0 focus-visible:outline-none focus-visible:ring-0 focus:border-primary focus-visible:border-primary disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-gray-100 disabled:opacity-50",
             hasError
-              ? "border-rose-500 focus-visible:border-rose-500 focus-visible:ring-3 focus-visible:ring-rose-500/20"
-              : "border-input focus-visible:border-ring"
+              ? "border-rose-500 focus-visible:border-rose-500"
+              : "border-input"
           )}
         >
           <span className={cn("truncate", !value && "text-muted-foreground")}>
@@ -920,9 +920,9 @@ export default function RegisterForm() {
   const heading = HEADINGS[step];
 
   return (
-    <div className="w-full max-w-[560px] mx-auto">
-      <Card className="w-full rounded-2xl ring-1 ring-border shadow-none">
-        <CardContent className="p-5 xs:p-6 sm:p-8">
+    <div className="w-full">
+      <Card className="w-full border-none shadow-none bg-transparent">
+        <CardContent className="p-5 xs:p-6 sm:p-7">
           {/* Logo */}
           <div className="mb-7 flex justify-center">
             <Logo />

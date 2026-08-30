@@ -41,9 +41,9 @@ export default function ForgotPasswordForm() {
   };
 
   return (
-    <div className="w-full max-w-[520px] mx-auto">
-      <Card className="w-full rounded-2xl ring-1 ring-border shadow-none">
-        <CardContent className="p-5 xs:p-6 sm:p-8">
+    <div className="w-full">
+      <Card className="w-full border-none shadow-none bg-transparent">
+        <CardContent className="p-5 xs:p-6 sm:p-7">
           {/* Logo */}
           <div className="mb-7 flex justify-center">
             <Logo />
